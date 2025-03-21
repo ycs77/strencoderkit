@@ -52,6 +52,13 @@ encoder.encode('Hello, World!') // 天干：甲乙丙丁戊己庚辛壬癸...
 encoder.decode(encoded) // Hello, World!
 ```
 
+## 參考
+
+- [与熊论道](http://hi.pcmoe.net/)
+- [TudouCode](https://github.com/lersh/TudouCode)
+- [Whisperer](https://github.com/Borber/Whisperer)
+- [Abracadabra 魔曰](https://github.com/SheepChef/Abracadabra)
+
 ## LICENSE
 
 基於 [MIT LICENSE](LICENSE.md) 釋出
