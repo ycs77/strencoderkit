@@ -27,7 +27,9 @@
     "build": "tsup",
     "test": "vitest"
   },
-  "dependencies": {},
+  "dependencies": {
+    "js-base64": "^3.7.7"
+  },
   "devDependencies": {
     "@types/node": "^22.13.10",
     "tsup": "^8.4.0",

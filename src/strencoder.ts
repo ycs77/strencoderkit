@@ -1,3 +1,5 @@
+import { Base64 } from 'js-base64'
+
 export interface StrencoderOptions {
   chars: string[]
   prefix?: string
@@ -17,17 +19,17 @@ export class Strencoder {
   }
 
   encode(input: string): string {
+    const buffer = Base64.toUint8Array(Base64.encode(input))
+
     let encoded = ''
 
-    for (let i = 0; i < input.length; i++) {
-      const char = input[i]
-      const index = char.charCodeAt(0)
-      const binary = index.toString(2).padStart(8, '0')
-      const encodedChar = binary
+    for (const byte of buffer) {
+      const binary = byte.toString(2).padStart(8, '0')
+      const encodedByte = binary
         .split('')
-        .map((bit) => this.#chars[parseInt(bit, 10)])
+        .map(bit => this.#chars[parseInt(bit, 10)])
         .join('')
-      encoded += encodedChar
+      encoded += encodedByte
     }
 
     return this.#prefix + encoded
