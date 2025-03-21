@@ -1,0 +1,37 @@
+{
+  "name": "strencoderkit",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "產生類似於熊曰、魔曰之類的自訂文字編碼工具，目前做出來是為了好玩，並無考慮實際用途。",
+  "license": "MIT",
+  "homepage": "https://github.com/ycs77/strencoderkit",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ycs77/strencoderkit.git"
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/strencoderkit.d.ts",
+      "import": "./dist/strencoderkit.mjs",
+      "require": "./dist/strencoderkit.cjs"
+    }
+  },
+  "main": "./dist/strencoderkit.cjs",
+  "module": "./dist/strencoderkit.mjs",
+  "types": "./dist/strencoderkit.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "tsup": "^8.4.0",
+    "typescript": "~5.7.3",
+    "vitest": "^3.0.9"
+  }
+}
