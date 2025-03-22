@@ -36,8 +36,8 @@ import { Strencoder } from 'strencoderkit'
 const strencoder = new Strencoder({
   chars: ['*', '-'],
 })
-strencoder.encode('hello world') // 'aGVsbG8gd29ybGQ='
-strencoder.decode('aGVsbG8gd29ybGQ=') // 'hello world'
+strencoder.encode('Hello World') // '*-**-****--**-*-*--*--***--*--***--*----**-******-*-*---*--*----*---**-**--*--***--**-**'
+strencoder.decode('*-**-****--**-*-*--*--***--*--***--*----**-******-*-*---*--*----*---**-**--*--***--**-**') // 'Hello World'
 ```
 
 ```ts
@@ -48,8 +48,8 @@ const strencoder = new Strencoder({
   chars: ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸']
 })
 
-encoder.encode('Hello, World!') // 天干：甲乙丙丁戊己庚辛壬癸...
-encoder.decode(encoded) // Hello, World!
+encoder.encode('Hello World') // 天干：甲乙丙丁戊己庚辛壬癸...
+encoder.decode('天干：甲乙丙丁戊己庚辛壬癸') // Hello World
 ```
 
 ## 參考
