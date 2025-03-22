@@ -8,11 +8,24 @@ describe('2碼字元', () => {
     const str = 'Hello World'
     const encoder = new Strencoder({ chars })
     const encoded = encoder.encode(str)
-    expect(encoded).toBe('*-**-****--**-*-*--*--***--*--***--*----**-******-*-*---*--*----*---**-**--*--***--**-**')
+    expect(encoded).toBe(
+      '*-**-****--**-*-' +
+      '*--*--***--*--**' +
+      '*--*----**-*****' +
+      '*-*-*---*--*----' +
+      '*---**-**--*--**' +
+      '*--**-**'
+    )
   })
 
   it('2碼字元解碼', () => {
-    const str = '*-**-****--**-*-*--*--***--*--***--*----**-******-*-*---*--*----*---**-**--*--***--**-**'
+    const str =
+      '*-**-****--**-*-' +
+      '*--*--***--*--**' +
+      '*--*----**-*****' +
+      '*-*-*---*--*----' +
+      '*---**-**--*--**' +
+      '*--**-**'
     const encoder = new Strencoder({ chars })
     const decoded = encoder.decode(str)
     expect(decoded).toBe('Hello World')
