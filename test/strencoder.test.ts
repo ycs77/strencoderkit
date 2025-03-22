@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest'
 import { Strencoder } from '../src/strencoder'
 
-describe('基本編碼', () => {
-  it('基本編碼', () => {
+describe('2進制', () => {
+  it('2進制編碼', () => {
     const str = 'Hello World'
     const encoder = new Strencoder({
       chars: ['*', '-'],
@@ -11,7 +11,7 @@ describe('基本編碼', () => {
     expect(encoded).toBe('*-**-****--**-*-*--*--***--*--***--*----**-******-*-*---*--*----*---**-**--*--***--**-**')
   })
 
-  it('基本解碼', () => {
+  it('2進制解碼', () => {
     const str = '*-**-****--**-*-*--*--***--*--***--*----**-******-*-*---*--*----*---**-**--*--***--**-**'
     const encoder = new Strencoder({
       chars: ['*', '-'],

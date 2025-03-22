@@ -32,24 +32,29 @@ export class Strencoder {
       encoded += encodedByte
     }
 
-    return this.#prefix + encoded
+    encoded = this.#prefix + encoded
+
+    return encoded
   }
 
   decode(input: string): string {
-    let decoded = ''
+    let cleanInput = input.slice(this.#prefix.length)
 
-    for (let i = this.#prefix.length; i < input.length; i += 8) {
-      const binary = input
+    const bytes: number[] = []
+
+    for (let i = 0; i < cleanInput.length; i += 8) {
+      const binary = cleanInput
         .slice(i, i + 8)
         .split('')
-        .map((char) => {
-          return this.#chars.indexOf(char).toString()
-        })
+        .map(char => this.#chars.indexOf(char).toString())
         .join('')
 
       const charCode = parseInt(binary, 2)
-      decoded += String.fromCharCode(charCode)
+      bytes.push(charCode)
     }
+
+    const buffer = new Uint8Array(bytes)
+    const decoded = Base64.decode(Base64.fromUint8Array(buffer))
 
     return decoded
   }
