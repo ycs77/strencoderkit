@@ -1,7 +1,14 @@
 import { Base64 } from 'js-base64'
+import { encodeBaseConversionBuffer, decodeBaseConversionBuffer } from './baseConversionBuffer'
 
 export interface StrencoderOptions {
+  /**
+   * 字元陣列，用於定義編碼時可用的字元集合。
+   */
   chars: string[]
+  /**
+   * 字串前綴，會加在編碼結果的開頭。
+   */
   prefix?: string
 }
 
@@ -10,65 +17,96 @@ export class Strencoder {
   #chars: string[]
   // 編碼後的前綴
   #prefix: string
-  // 編碼後的每個字元的位元數
-  encodedBytesCount: number
+  // 編碼後每個 byte 的長度
+  #totalByteLength: number
 
   constructor(options: StrencoderOptions) {
-    if (options.chars.length < 2 || options.chars.length > 256) {
+    if (options.chars.length < 2 ** 1 || options.chars.length > 2 ** 8) {
       throw new Error('chars 長度必須介於 2 到 256 之間')
-    }
-    if (Math.log2(options.chars.length) % 1 !== 0) {
-      throw new Error(`chars 長度必須是 2 的冪次方`)
     }
 
     this.#chars = options.chars
     this.#prefix = options.prefix || ''
-    this.encodedBytesCount = Math.log2(this.#chars.length)
+    this.#totalByteLength = Math.ceil(Math.log(2 ** 8) / Math.log(this.#chars.length))
   }
 
+  /**
+   * 使用提供的字元集合和前綴，將輸入字串編碼為自定義編碼字串。
+   */
   encode(input: string): string {
+    // 將輸入字串轉換為二進位陣列
     const buffer = Base64.toUint8Array(Base64.encode(input))
 
-    let binary = ''
-    for (const byte of buffer) {
-      binary += byte.toString(2).padStart(8, '0')
-    }
+    // 將每個字元轉換為編碼後的字元索引數字
+    const encodedBuffer = Array.from(buffer).flatMap(byte => {
+      // 將每個字元轉換為編碼後的字元索引數字，讓每個 byte 最高上限為 #chars 的長度
+      const bytesBuffer = encodeBaseConversionBuffer(byte, this.#chars.length)
 
-    const binarySegments: string[] = Array.from({
-      length: Math.ceil(binary.length / this.encodedBytesCount),
-    }).map((_, i) =>
-      binary.slice(
-        i * this.encodedBytesCount,
-        (i + 1) * this.encodedBytesCount
-      )
-    )
+      // 將每個 byte 補齊至 #totalByteLength
+      const arrBuffer = new ArrayBuffer(this.#totalByteLength)
+      const fullBytesBuffer = new Uint8Array(arrBuffer)
+      fullBytesBuffer.set(bytesBuffer, this.#totalByteLength - bytesBuffer.length)
 
-    let encoded = binarySegments
-      .map(segment => this.#chars[parseInt(segment, 2)])
+      return Array.from(fullBytesBuffer)
+    })
+
+    // 將字元索引數字轉換為 #chars 中對應字元
+    let encoded = encodedBuffer
+      .map(index => this.#chars[index])
       .join('')
 
+    // 加上前綴
     encoded = this.#prefix + encoded
 
     return encoded
   }
 
+  /**
+   * 解碼給定的字串，將其轉換回原始的字串內容。
+   */
   decode(input: string): string {
-    let cleanInput = input.slice(this.#prefix.length)
+    // 移除前綴
+    let baseInput = input.slice(this.#prefix.length)
 
-    let binary = ''
-    for (let i = 0; i < cleanInput.length; i ++) {
-      const index = this.#chars.indexOf(cleanInput[i])
-      binary += index.toString(2).padStart(this.encodedBytesCount, '0')
-    }
+    // 將每個字元轉換為編碼字元對應的索引數字
+    const encodedBuffer = Array.from(baseInput).map(char => {
+      const index = this.#chars.indexOf(char)
+      if (index === -1) {
+        throw new Error(`無效的字元: ${char}`)
+      }
+      return index
+    })
 
-    const binarySegments: string[] = Array.from({ length: binary.length / 8 })
-      .map((_, i) => binary.slice(i * 8, (i + 1) * 8))
+    // 將每個字元索引數字轉換為二進位陣列，陣列元素對應每個 byte
+    const buffer = Array.from({ length: Math.ceil(encodedBuffer.length / this.#totalByteLength) })
+      .map((_, i) =>
+        new Uint8Array(
+          encodedBuffer.slice(
+            i * this.#totalByteLength,
+            (i + 1) * this.#totalByteLength
+          )
+        )
+      )
 
-    const bytes = binarySegments.map(segment => parseInt(segment, 2))
+    // 將每個 byte 解碼轉換回原本的 byte
+    const decodedBuffer = new Uint8Array(
+      buffer.map(byteBuffer => decodeBaseConversionBuffer(byteBuffer, this.#chars.length))
+    )
 
-    const buffer = new Uint8Array(bytes)
-    const decoded = Base64.decode(Base64.fromUint8Array(buffer))
+    // 將二進位陣列轉換為字串
+    const decoded = Base64.decode(Base64.fromUint8Array(decodedBuffer))
 
     return decoded
+  }
+
+  /**
+   * 嘗試解碼輸入字串，若發生錯誤則回傳空字串。
+   */
+  decodeSilent(input: string): string {
+    try {
+      return this.decode(input)
+    } catch (error) {
+      return ''
+    }
   }
 }

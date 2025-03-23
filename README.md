@@ -30,26 +30,37 @@ yarn add strencoderkit
 pnpm add strencoderkit
 ```
 
+2位字元編碼範例：
+
 ```ts
 import { Strencoder } from 'strencoderkit'
 
 const strencoder = new Strencoder({
   chars: ['*', '-'],
 })
-strencoder.encode('Hello World') // '*-**-****--**-*-*--*--***--*--***--*----**-******-*-*---*--*----*---**-**--*--***--**-**'
-strencoder.decode('*-**-****--**-*-*--*--***--*--***--*----**-******-*-*---*--*----*---**-**--*--***--**-**') // 'Hello World'
+
+strencoder.encode('Hello World')
+// '*-**-****--**-*-*--*--***--*--***--*----**-******-*-*---*--*----*---**-**--*--***--**-**'
+
+strencoder.decode('*-**-****--**-*-*--*--***--*--***--*----**-******-*-*---*--*----*---**-**--*--***--**-**')
+// 'Hello World'
 ```
+
+用天干編碼範例：
 
 ```ts
 import { Strencoder } from 'strencoderkit'
 
 const strencoder = new Strencoder({
   prefix: '天干：',
-  chars: ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸']
+  chars: ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'],
 })
 
-encoder.encode('Hello World') // 天干：甲乙丙丁戊己庚辛壬癸...
-encoder.decode('天干：甲乙丙丁戊己庚辛壬癸') // Hello World
+encoder.encode('Hello World')
+// 天干：甲辛丙乙甲乙乙甲壬乙甲壬乙乙乙甲丁丙甲壬辛乙乙乙乙乙戊乙甲壬乙甲甲
+
+encoder.decode('天干：甲辛丙乙甲乙乙甲壬乙甲壬乙乙乙甲丁丙甲壬辛乙乙乙乙乙戊乙甲壬乙甲甲')
+// Hello World
 ```
 
 ## 參考

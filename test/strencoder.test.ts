@@ -1,30 +1,30 @@
 import { describe, it, expect } from 'vitest'
 import { Strencoder } from '../src/strencoder'
 
-describe('2碼字元', () => {
+describe('2位字元', () => {
   const chars = ['*', '-']
 
-  it('2碼字元編碼', () => {
+  it('2位字元編碼', () => {
     const str = 'Hello World'
     const encoder = new Strencoder({ chars })
     const encoded = encoder.encode(str)
     expect(encoded).toBe(
-      '*-**-****--**-*-' +
-      '*--*--***--*--**' +
-      '*--*----**-*****' +
-      '*-*-*---*--*----' +
-      '*---**-**--*--**' +
+      '*-**-***' + '*--**-*-' +
+      '*--*--**' + '*--*--**' +
+      '*--*----' + '**-*****' +
+      '*-*-*---' + '*--*----' +
+      '*---**-*' + '*--*--**' +
       '*--**-**'
     )
   })
 
-  it('2碼字元解碼', () => {
+  it('2位字元解碼', () => {
     const str =
-      '*-**-****--**-*-' +
-      '*--*--***--*--**' +
-      '*--*----**-*****' +
-      '*-*-*---*--*----' +
-      '*---**-**--*--**' +
+      '*-**-***' + '*--**-*-' +
+      '*--*--**' + '*--*--**' +
+      '*--*----' + '**-*****' +
+      '*-*-*---' + '*--*----' +
+      '*---**-*' + '*--*--**' +
       '*--**-**'
     const encoder = new Strencoder({ chars })
     const decoded = encoder.decode(str)
@@ -32,7 +32,79 @@ describe('2碼字元', () => {
   })
 })
 
-describe('256碼字元', () => {
+describe('7位字元', () => {
+  const chars = ['日', '月', '火', '水', '木', '金', '土']
+
+  it('7位字元編碼', () => {
+    const str = 'Hello World'
+    const encoder = new Strencoder({ chars })
+    const encoded = encoder.encode(str)
+    expect(encoded).toBe('月水火火日水火月水火月水火月土日木木月金水火月土火火火火月水火日火')
+  })
+
+  it('7位字元解碼', () => {
+    const str = '月水火火日水火月水火月水火月土日木木月金水火月土火火火火月水火日火'
+    const encoder = new Strencoder({ chars })
+    const decoded = encoder.decode(str)
+    expect(decoded).toBe('Hello World')
+  })
+})
+
+describe('8位字元', () => {
+  const chars = ['水', '金', '地', '火', '木', '土', '天', '海']
+
+  it('8位字元編碼', () => {
+    const str = 'Hello World'
+    const encoder = new Strencoder({ chars })
+    const encoded = encoder.encode(str)
+    expect(encoded).toBe('金金水金木土金土木金土木金土海水木水金地海金土海金天地金土木金木木')
+  })
+
+  it('8位字元解碼', () => {
+    const str = '金金水金木土金土木金土木金土海水木水金地海金土海金天地金土木金木木'
+    const encoder = new Strencoder({ chars })
+    const decoded = encoder.decode(str)
+    expect(decoded).toBe('Hello World')
+  })
+})
+
+describe('10位字元', () => {
+  const chars = ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸']
+
+  it('10位字元編碼', () => {
+    const str = 'Hello World'
+    const encoder = new Strencoder({ prefix: '天干：', chars })
+    const encoded = encoder.encode(str)
+    expect(encoded).toBe('天干：甲辛丙乙甲乙乙甲壬乙甲壬乙乙乙甲丁丙甲壬辛乙乙乙乙乙戊乙甲壬乙甲甲')
+  })
+
+  it('10位字元解碼', () => {
+    const str = '天干：甲辛丙乙甲乙乙甲壬乙甲壬乙乙乙甲丁丙甲壬辛乙乙乙乙乙戊乙甲壬乙甲甲'
+    const encoder = new Strencoder({ prefix: '天干：', chars })
+    const decoded = encoder.decode(str)
+    expect(decoded).toBe('Hello World')
+  })
+})
+
+describe('12位字元', () => {
+  const chars = ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥']
+
+  it('12位字元編碼', () => {
+    const str = 'Hello World'
+    const encoder = new Strencoder({ prefix: '地支：', chars })
+    const encoded = encoder.encode(str)
+    expect(encoded).toBe('地支：子午子子申巳子酉子子酉子子酉卯子寅申子未卯子酉卯子酉午子酉子子申辰')
+  })
+
+  it('12位字元解碼', () => {
+    const str = '地支：子午子子申巳子酉子子酉子子酉卯子寅申子未卯子酉卯子酉午子酉子子申辰'
+    const encoder = new Strencoder({ prefix: '地支：', chars })
+    const decoded = encoder.decode(str)
+    expect(decoded).toBe('Hello World')
+  })
+})
+
+describe('256位字元', () => {
   const chars = [
     '力', '卜', '十', '土', '工', '女', '子', '寸', '小', '山', '巾', '戈', '弓', '心', '戶', '手',
     '文', '支', '斗', '斤', '方', '日', '月', '木', '止', '比', '水', '火', '爪', '父', '牙', '牛',
@@ -52,14 +124,14 @@ describe('256碼字元', () => {
     '快', '告', '訴', '光', '拉', '怪', '呀', '半', '再', '苗', '苦', '油', '能', '收', '甜', '井',
   ]
 
-  it('256碼字元編碼', () => {
+  it('256位字元編碼', () => {
     const str = 'Hello World'
     const encoder = new Strencoder({ chars })
     const encoded = encoder.encode(str)
     expect(encoded).toBe('貝鳥鼎鼎齊犬面齊太鼎魚')
   })
 
-  it('256碼字元解碼', () => {
+  it('256位字元解碼', () => {
     const str = '貝鳥鼎鼎齊犬面齊太鼎魚'
     const encoder = new Strencoder({ chars })
     const decoded = encoder.decode(str)
