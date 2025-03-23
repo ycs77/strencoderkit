@@ -1,5 +1,5 @@
 import { Base64 } from 'js-base64'
-import { encodeBaseConversionBuffer, decodeBaseConversionBuffer } from './baseConversionBuffer'
+import { encodeBaseConversionByte, decodeBaseConversionByte } from './baseConversionByte'
 
 export interface StrencoderOptions {
   /**
@@ -37,10 +37,10 @@ export class Strencoder {
     // 將輸入字串轉換為二進位陣列
     const buffer = Base64.toUint8Array(Base64.encode(input))
 
-    // 將每個字元轉換為編碼後的字元索引數字
+    // 將每個 byte 轉換為編碼後的字元索引數字
     const encodedBuffer = Array.from(buffer).flatMap(byte => {
       // 將每個字元轉換為編碼後的字元索引數字，讓每個 byte 最高上限為 #chars 的長度
-      const bytesBuffer = encodeBaseConversionBuffer(byte, this.#chars.length)
+      const bytesBuffer = encodeBaseConversionByte(byte, this.#chars.length)
 
       // 將每個 byte 補齊至 #totalByteLength
       const arrBuffer = new ArrayBuffer(this.#totalByteLength)
@@ -90,7 +90,7 @@ export class Strencoder {
 
     // 將每個 byte 解碼轉換回原本的 byte
     const decodedBuffer = new Uint8Array(
-      buffer.map(byteBuffer => decodeBaseConversionBuffer(byteBuffer, this.#chars.length))
+      buffer.map(byteBuffer => decodeBaseConversionByte(byteBuffer, this.#chars.length))
     )
 
     // 將二進位陣列轉換為字串
