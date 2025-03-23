@@ -1,4 +1,5 @@
 import { encodeBaseConversionBuffer, decodeBaseConversionBuffer } from './baseConversionBuffer'
+import { compress, decompress } from './compression'
 import { strToUint8Array, uint8ArrayToStr } from './utils'
 
 export interface StrencoderOptions {
@@ -10,6 +11,11 @@ export interface StrencoderOptions {
    * 字串前綴，會加在編碼結果的開頭。
    */
   prefix?: string
+  /**
+   * 是否啟用壓縮功能，預設為 true。
+   * @default true
+   */
+  compress?: boolean
 }
 
 export class Strencoder {
@@ -17,6 +23,8 @@ export class Strencoder {
   #chars: string[]
   // 編碼後的前綴
   #prefix: string
+  // 是否啟用壓縮功能
+  #compress: boolean
 
   constructor(options: StrencoderOptions) {
     if (options.chars.length < 2 ** 1 || options.chars.length > 2 ** 8) {
@@ -25,6 +33,7 @@ export class Strencoder {
 
     this.#chars = options.chars
     this.#prefix = options.prefix || ''
+    this.#compress = options.compress ?? true
   }
 
   /**
@@ -32,9 +41,14 @@ export class Strencoder {
    */
   encode(input: string): string {
     // 將輸入字串轉換為二進位陣列
-    const buffer = strToUint8Array(input)
+    let buffer = strToUint8Array(input)
 
-    // 將字元索引數字轉換為 #chars 中對應字元
+    // 壓縮 buffer
+    if (this.#compress) {
+      buffer = compress(buffer)
+    }
+
+    // 將 buffer 編碼為對應自定義編碼字串
     let encoded = encodeBaseConversionBuffer(buffer, this.#chars)
 
     // 加上前綴
@@ -51,10 +65,15 @@ export class Strencoder {
     const baseInput = input.slice(this.#prefix.length)
 
     // 解碼轉換回原本的 buffer
-    const decodedBuffer = decodeBaseConversionBuffer(baseInput, this.#chars)
+    let buffer = decodeBaseConversionBuffer(baseInput, this.#chars)
+
+    // 解壓縮 buffer
+    if (this.#compress) {
+      buffer = decompress(buffer)
+    }
 
     // 將 buffer 轉換為字串
-    const decoded = uint8ArrayToStr(decodedBuffer)
+    const decoded = uint8ArrayToStr(buffer)
 
     return decoded
   }

@@ -8,24 +8,11 @@ describe('Strencoder', () => {
     const str = 'Hello World'
     const strencoder = new Strencoder({ chars })
     const encoded = strencoder.encode(str)
-    expect(encoded).toBe(
-      '*-**-***' + '*--**-*-' +
-      '*--*--**' + '*--*--**' +
-      '*--*----' + '**-*****' +
-      '*-*-*---' + '*--*----' +
-      '*---**-*' + '*--*--**' +
-      '*--**-**'
-    )
+    expect(encoded).toBe('-****---*--**-----***---***-*-**-*****----*----*-*--*-----***---*-***-*-----------------')
   })
 
   it('解碼成功', () => {
-    const str =
-      '*-**-***' + '*--**-*-' +
-      '*--*--**' + '*--*--**' +
-      '*--*----' + '**-*****' +
-      '*-*-*---' + '*--*----' +
-      '*---**-*' + '*--*--**' +
-      '*--**-**'
+    const str = '-****---*--**-----***---***-*-**-*****----*----*-*--*-----***---*-***-*-----------------'
     const strencoder = new Strencoder({ chars })
     const decoded = strencoder.decode(str)
     expect(decoded).toBe('Hello World')

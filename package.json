@@ -28,10 +28,13 @@
     "test": "vitest"
   },
   "dependencies": {
-    "js-base64": "^3.7.7"
+    "js-base64": "^3.7.7",
+    "pako": "^2.1.0",
+    "unishox2.siara.cc": "^1.1.5"
   },
   "devDependencies": {
     "@types/node": "^22.13.10",
+    "@types/pako": "^2.0.3",
     "tsup": "^8.4.0",
     "typescript": "~5.7.3",
     "vitest": "^3.0.9"
