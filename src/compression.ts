@@ -96,7 +96,7 @@ export function unishoxDecompress(buffer: Uint8Array) {
         USX_HCODE_LENS_DFLT,
         USX_FREQ_SEQ_DFLT,
         USX_TEMPLATES
-      )
+      ) as number
       break
   }
 

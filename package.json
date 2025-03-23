@@ -10,34 +10,48 @@
     "url": "git+https://github.com/ycs77/strencoderkit.git"
   },
   "sideEffects": false,
+  "bin": {
+    "strencoderkit": "bin/strencoderkit.js"
+  },
   "exports": {
     ".": {
       "types": "./dist/strencoderkit.d.ts",
-      "import": "./dist/strencoderkit.mjs",
-      "require": "./dist/strencoderkit.cjs"
+      "import": "./dist/strencoderkit.js"
     }
   },
-  "main": "./dist/strencoderkit.cjs",
-  "module": "./dist/strencoderkit.mjs",
+  "main": "./dist/strencoderkit.js",
   "types": "./dist/strencoderkit.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsup",
-    "test": "vitest"
+    "build": "run-p build:*",
+    "build:pkg": "tsup",
+    "build:cli": "tsup --config tsup.cli.config.ts",
+    "watch": "run-p watch:*",
+    "watch:pkg": "tsup --watch",
+    "watch:cli": "tsup --watch --config tsup.cli.config.ts",
+    "test": "vitest",
+    "postinstall": "patch-package"
   },
   "dependencies": {
+    "@clack/prompts": "^0.10.0",
     "js-crypto-aes": "^1.0.6",
     "js-crypto-hash": "^1.0.7",
     "pako": "^2.1.0",
-    "unishox2.siara.cc": "^1.1.5"
+    "picocolors": "^1.1.1",
+    "yargs-parser": "^21.1.1"
   },
   "devDependencies": {
     "@types/node": "^22.13.10",
     "@types/pako": "^2.0.3",
+    "@types/yargs-parser": "^21.0.3",
+    "npm-run-all2": "^7.0.2",
+    "patch-package": "^8.0.0",
     "tsup": "^8.4.0",
+    "tsx": "^4.19.3",
     "typescript": "~5.7.3",
+    "unishox2.siara.cc": "^1.1.5",
     "vitest": "^3.0.9"
   }
 }

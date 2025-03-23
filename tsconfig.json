@@ -11,6 +11,7 @@
     "esModuleInterop": true,
     "noImplicitThis": true,
     "verbatimModuleSyntax": true,
+    "allowJs": true,
     "skipLibCheck": true
   },
   "include": [

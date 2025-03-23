@@ -1,4 +1,4 @@
-# Strencoderkit
+# StrEncoderKit
 
 產生類似於熊曰、魔曰之類的自訂文字編碼工具，目前做出來是為了好玩，並無考慮實際用途。
 

@@ -2,9 +2,8 @@ import { defineConfig } from 'tsup'
 
 export default defineConfig({
   entry: {
-    'strencoderkit': 'src/index.ts',
+    'cli': 'src/cli.ts',
   },
-  dts: true,
   minify: true,
   format: ['esm'],
   noExternal: ['unishox2.siara.cc'],
