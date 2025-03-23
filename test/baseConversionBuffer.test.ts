@@ -1,13 +1,15 @@
 import { describe, it, expect } from 'vitest'
 import { encodeBaseConversionBuffer, decodeBaseConversionBuffer } from '../src/baseConversionBuffer'
-import { strToUint8Array, uint8ArrayToStr } from '../src/utils'
+
+const encoder = new TextEncoder()
+const decoder = new TextDecoder()
 
 describe('baseConversionBuffer - 2位字元', () => {
   const chars = ['*', '-']
 
   it('2位字元編碼', () => {
     const str = 'Hello World'
-    const encoded = encodeBaseConversionBuffer(strToUint8Array(str), chars)
+    const encoded = encodeBaseConversionBuffer(encoder.encode(str), chars)
     expect(encoded).toBe(
       '*-**-***' + '*--**-*-' +
       '*--*--**' + '*--*--**' +
@@ -26,7 +28,7 @@ describe('baseConversionBuffer - 2位字元', () => {
       '*-*-*---' + '*--*----' +
       '*---**-*' + '*--*--**' +
       '*--**-**'
-    const decoded = uint8ArrayToStr(decodeBaseConversionBuffer(str, chars))
+    const decoded = decoder.decode(decodeBaseConversionBuffer(str, chars))
     expect(decoded).toBe('Hello World')
   })
 })
@@ -36,13 +38,13 @@ describe('baseConversionBuffer - 7位字元', () => {
 
   it('7位字元編碼', () => {
     const str = 'Hello World'
-    const encoded = encodeBaseConversionBuffer(strToUint8Array(str), chars)
+    const encoded = encodeBaseConversionBuffer(encoder.encode(str), chars)
     expect(encoded).toBe('月水火火日水火月水火月水火月土日木木月金水火月土火火火火月水火日火')
   })
 
   it('7位字元解碼', () => {
     const str = '月水火火日水火月水火月水火月土日木木月金水火月土火火火火月水火日火'
-    const decoded = uint8ArrayToStr(decodeBaseConversionBuffer(str, chars))
+    const decoded = decoder.decode(decodeBaseConversionBuffer(str, chars))
     expect(decoded).toBe('Hello World')
   })
 })
@@ -52,13 +54,13 @@ describe('baseConversionBuffer - 8位字元', () => {
 
   it('8位字元編碼', () => {
     const str = 'Hello World'
-    const encoded = encodeBaseConversionBuffer(strToUint8Array(str), chars)
+    const encoded = encodeBaseConversionBuffer(encoder.encode(str), chars)
     expect(encoded).toBe('金金水金木土金土木金土木金土海水木水金地海金土海金天地金土木金木木')
   })
 
   it('8位字元解碼', () => {
     const str = '金金水金木土金土木金土木金土海水木水金地海金土海金天地金土木金木木'
-    const decoded = uint8ArrayToStr(decodeBaseConversionBuffer(str, chars))
+    const decoded = decoder.decode(decodeBaseConversionBuffer(str, chars))
     expect(decoded).toBe('Hello World')
   })
 })
@@ -68,13 +70,13 @@ describe('baseConversionBuffer - 10位字元', () => {
 
   it('10位字元編碼', () => {
     const str = 'Hello World'
-    const encoded = encodeBaseConversionBuffer(strToUint8Array(str), chars)
+    const encoded = encodeBaseConversionBuffer(encoder.encode(str), chars)
     expect(encoded).toBe('甲辛丙乙甲乙乙甲壬乙甲壬乙乙乙甲丁丙甲壬辛乙乙乙乙乙戊乙甲壬乙甲甲')
   })
 
   it('10位字元解碼', () => {
     const str = '甲辛丙乙甲乙乙甲壬乙甲壬乙乙乙甲丁丙甲壬辛乙乙乙乙乙戊乙甲壬乙甲甲'
-    const decoded = uint8ArrayToStr(decodeBaseConversionBuffer(str, chars))
+    const decoded = decoder.decode(decodeBaseConversionBuffer(str, chars))
     expect(decoded).toBe('Hello World')
   })
 })
@@ -84,13 +86,13 @@ describe('baseConversionBuffer - 12位字元', () => {
 
   it('12位字元編碼', () => {
     const str = 'Hello World'
-    const encoded = encodeBaseConversionBuffer(strToUint8Array(str), chars)
+    const encoded = encodeBaseConversionBuffer(encoder.encode(str), chars)
     expect(encoded).toBe('子午子子申巳子酉子子酉子子酉卯子寅申子未卯子酉卯子酉午子酉子子申辰')
   })
 
   it('12位字元解碼', () => {
     const str = '子午子子申巳子酉子子酉子子酉卯子寅申子未卯子酉卯子酉午子酉子子申辰'
-    const decoded = uint8ArrayToStr(decodeBaseConversionBuffer(str, chars))
+    const decoded = decoder.decode(decodeBaseConversionBuffer(str, chars))
     expect(decoded).toBe('Hello World')
   })
 })
@@ -117,13 +119,13 @@ describe('baseConversionBuffer - 256位字元', () => {
 
   it('256位字元編碼', () => {
     const str = 'Hello World'
-    const encoded = encodeBaseConversionBuffer(strToUint8Array(str), chars)
+    const encoded = encodeBaseConversionBuffer(encoder.encode(str), chars)
     expect(encoded).toBe('貝鳥鼎鼎齊犬面齊太鼎魚')
   })
 
   it('256位字元解碼', () => {
     const str = '貝鳥鼎鼎齊犬面齊太鼎魚'
-    const decoded = uint8ArrayToStr(decodeBaseConversionBuffer(str, chars))
+    const decoded = decoder.decode(decodeBaseConversionBuffer(str, chars))
     expect(decoded).toBe('Hello World')
   })
 })

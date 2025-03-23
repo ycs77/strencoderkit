@@ -1,6 +1,5 @@
 import { encodeBaseConversionBuffer, decodeBaseConversionBuffer } from './baseConversionBuffer'
 import { compress, decompress } from './compression'
-import { strToUint8Array, uint8ArrayToStr } from './utils'
 
 export interface StrencoderOptions {
   /**
@@ -41,7 +40,7 @@ export class Strencoder {
    */
   encode(input: string): string {
     // 將輸入字串轉換為二進位陣列
-    let buffer = strToUint8Array(input)
+    let buffer = new TextEncoder().encode(input)
 
     // 壓縮 buffer
     if (this.#compress) {
@@ -73,7 +72,7 @@ export class Strencoder {
     }
 
     // 將 buffer 轉換為字串
-    const decoded = uint8ArrayToStr(buffer)
+    const decoded = new TextDecoder().decode(buffer)
 
     return decoded
   }

@@ -28,7 +28,6 @@
     "test": "vitest"
   },
   "dependencies": {
-    "js-base64": "^3.7.7",
     "pako": "^2.1.0",
     "unishox2.siara.cc": "^1.1.5"
   },
