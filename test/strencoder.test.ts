@@ -4,30 +4,30 @@ import { Strencoder } from '../src/strencoder'
 describe('Strencoder', () => {
   const chars = ['*', '-']
 
-  it('編碼成功', () => {
+  it('編碼成功', async () => {
     const str = 'Hello World'
     const strencoder = new Strencoder({ chars })
-    const encoded = strencoder.encode(str)
-    expect(encoded).toBe('-****---*--**-----***---***-*-**-*****----*----*-*--*-----***---*-***-*-----------------')
+    const encoded = await strencoder.encode(str)
+    expect(encoded).toBe('***--*---**-*-*----*-**-**-***-***--**-*-*--*--*--*--***-*-*****----**--*--**-***---*-*-')
   })
 
-  it('解碼成功', () => {
-    const str = '-****---*--**-----***---***-*-**-*****----*----*-*--*-----***---*-***-*-----------------'
+  it('解碼成功', async () => {
+    const str = '***--*---**-*-*----*-**-**-***-***--**-*-*--*--*--*--***-*-*****----**--*--**-***---*-*-'
     const strencoder = new Strencoder({ chars })
-    const decoded = strencoder.decode(str)
+    const decoded = await strencoder.decode(str)
     expect(decoded).toBe('Hello World')
   })
 
   it('解碼失敗並拋出錯誤', () => {
     const str = '?'
     const strencoder = new Strencoder({ chars })
-    expect(() => strencoder.decode(str)).toThrow('無效的字元: ?')
+    expect(strencoder.decode(str)).rejects.toThrow('無效的字元: ?')
   })
 
-  it('解碼失敗並回傳空字串', () => {
+  it('解碼失敗並回傳空字串', async () => {
     const str = '?'
     const strencoder = new Strencoder({ chars })
-    const decoded = strencoder.decodeSilent(str)
+    const decoded = await strencoder.decodeSilent(str)
     expect(decoded).toBe('')
   })
 })

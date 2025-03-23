@@ -1,5 +1,6 @@
 import { encodeBaseConversionBuffer, decodeBaseConversionBuffer } from './baseConversionBuffer'
 import { compress, decompress } from './compression'
+import { encryptAES, decryptAES } from './crypto'
 
 export interface StrencoderOptions {
   /**
@@ -11,18 +12,23 @@ export interface StrencoderOptions {
    */
   prefix?: string
   /**
-   * 是否啟用壓縮功能，預設為 true。
+   * 是否啟用加密功能。
+   * @default true
+   */
+  encrypt?: boolean
+  /**
+   * 是否啟用壓縮功能。
    * @default true
    */
   compress?: boolean
 }
 
+const DEFAULT_KEY = 'strencoderkit'
+
 export class Strencoder {
-  // 編碼後的字元集合
   #chars: string[]
-  // 編碼後的前綴
   #prefix: string
-  // 是否啟用壓縮功能
+  #encrypt: boolean
   #compress: boolean
 
   constructor(options: StrencoderOptions) {
@@ -32,19 +38,25 @@ export class Strencoder {
 
     this.#chars = options.chars
     this.#prefix = options.prefix || ''
+    this.#encrypt = options.encrypt ?? true
     this.#compress = options.compress ?? true
   }
 
   /**
    * 使用提供的字元集合和前綴，將輸入字串編碼為自定義編碼字串。
    */
-  encode(input: string): string {
+  async encode(input: string, key = DEFAULT_KEY): Promise<string> {
     // 將輸入字串轉換為二進位陣列
     let buffer = new TextEncoder().encode(input)
 
     // 壓縮 buffer
     if (this.#compress) {
       buffer = compress(buffer)
+    }
+
+    // 加密 buffer
+    if (this.#encrypt) {
+      buffer = await encryptAES(buffer, key)
     }
 
     // 將 buffer 編碼為對應自定義編碼字串
@@ -59,12 +71,17 @@ export class Strencoder {
   /**
    * 解碼給定的字串，將其轉換回原始的字串內容。
    */
-  decode(input: string): string {
+  async decode(input: string, key = DEFAULT_KEY): Promise<string> {
     // 移除前綴
     const baseInput = input.slice(this.#prefix.length)
 
     // 解碼轉換回原本的 buffer
     let buffer = decodeBaseConversionBuffer(baseInput, this.#chars)
+
+    // 解密 buffer
+    if (this.#encrypt) {
+      buffer = await decryptAES(buffer, key)
+    }
 
     // 解壓縮 buffer
     if (this.#compress) {
@@ -80,9 +97,9 @@ export class Strencoder {
   /**
    * 嘗試解碼輸入字串，若發生錯誤則回傳空字串。
    */
-  decodeSilent(input: string): string {
+  async decodeSilent(input: string): Promise<string> {
     try {
-      return this.decode(input)
+      return await this.decode(input)
     } catch (error) {
       return ''
     }

@@ -28,6 +28,8 @@
     "test": "vitest"
   },
   "dependencies": {
+    "js-crypto-aes": "^1.0.6",
+    "js-crypto-hash": "^1.0.7",
     "pako": "^2.1.0",
     "unishox2.siara.cc": "^1.1.5"
   },
