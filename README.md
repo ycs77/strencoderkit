@@ -7,18 +7,24 @@
 編碼文字：
 
 ```bash
-npx strencoderkit encode "hello world"
-# aGVsbG8gd29ybGQ=
+npx strencoderkit encode "Hello World"
+# 日水土水日火木金火日木土月日月水金日木火土水月土木土金火日火火火金
 ```
 
 解碼文字：
 
 ```bash
-npx strencoderkit decode "aGVsbG8gd29ybGQ="
-# hello world
+npx strencoderkit decode "日水土水日火木金火日木土月日月水金日木火土水月土木土金火日火火火金"
+# Hello World
 ```
 
-## 程序化使用方式
+可以加上 `--plain` 來輸出純文字：
+
+```bash
+npx strencoderkit encode "Hello World" --plain
+```
+
+## 套件使用方式
 
 在專案中安裝套件：
 
@@ -40,9 +46,9 @@ const strencoder = new Strencoder({
 })
 
 strencoder.encode('Hello World')
-// '*-**-****--**-*-*--*--***--*--***--*----**-******-*-*---*--*----*---**-**--*--***--**-**'
+// '***--*---**-*-*----*-**-**-***-***--**-*-*--*--*--*--***-*-*****----**--*--**-***---*-*-'
 
-strencoder.decode('*-**-****--**-*-*--*--***--*--***--*----**-******-*-*---*--*----*---**-**--*--***--**-**')
+strencoder.decode('***--*---**-*-*----*-**-**-***-***--**-*-*--*--*--*--***-*-*****----**--*--**-***---*-*-')
 // 'Hello World'
 ```
 
@@ -57,10 +63,10 @@ const strencoder = new Strencoder({
 })
 
 encoder.encode('Hello World')
-// 天干：甲辛丙乙甲乙乙甲壬乙甲壬乙乙乙甲丁丙甲壬辛乙乙乙乙乙戊乙甲壬乙甲甲
+// '天干：甲丙辛乙戊癸丙丁丁甲丁戊甲己甲乙壬丙丙乙庚乙庚甲丙戊丁乙甲甲乙乙辛'
 
-encoder.decode('天干：甲辛丙乙甲乙乙甲壬乙甲壬乙乙乙甲丁丙甲壬辛乙乙乙乙乙戊乙甲壬乙甲甲')
-// Hello World
+encoder.decode('天干：甲丙辛乙戊癸丙丁丁甲丁戊甲己甲乙壬丙丙乙庚乙庚甲丙戊丁乙甲甲乙乙辛')
+// 'Hello World'
 ```
 
 ## 參考
