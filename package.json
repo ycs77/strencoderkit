@@ -36,16 +36,15 @@
   },
   "dependencies": {
     "@clack/prompts": "^0.10.0",
+    "cac": "^6.7.14",
     "js-crypto-aes": "^1.0.6",
     "js-crypto-hash": "^1.0.7",
     "pako": "^2.1.0",
-    "picocolors": "^1.1.1",
-    "yargs-parser": "^21.1.1"
+    "picocolors": "^1.1.1"
   },
   "devDependencies": {
     "@types/node": "^22.13.10",
     "@types/pako": "^2.0.3",
-    "@types/yargs-parser": "^21.0.3",
     "npm-run-all2": "^7.0.2",
     "patch-package": "^8.0.0",
     "tsup": "^8.4.0",

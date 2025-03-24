@@ -12,6 +12,7 @@
     "noImplicitThis": true,
     "verbatimModuleSyntax": true,
     "allowJs": true,
+    "resolveJsonModule": true,
     "skipLibCheck": true
   },
   "include": [
