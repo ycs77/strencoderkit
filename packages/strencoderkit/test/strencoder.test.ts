@@ -18,10 +18,10 @@ describe('Strencoder', () => {
     expect(decoded).toBe('Hello World')
   })
 
-  it('解碼失敗並拋出錯誤', () => {
+  it('解碼失敗並拋出錯誤', async () => {
     const str = '?'
     const strencoder = new Strencoder({ chars })
-    expect(strencoder.decode(str)).rejects.toThrow('無效的字元: ?')
+    await expect(strencoder.decode(str)).rejects.toThrow('無效的字元: ?')
   })
 
   it('解碼失敗並回傳空字串', async () => {
