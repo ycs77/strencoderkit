@@ -2,26 +2,59 @@
 
 產生類似於熊曰、魔曰之類的編碼工具，但編碼文字可以自訂，目前做出來是為了好玩，並無考慮實際用途，不要用到生產環境中。
 
+## 全局安裝
+
+全局安裝套件：
+
+```bash
+npm install -g strencoderkit
+```
+
+或是使用 `npx` 直接執行：
+
+```bash
+npx strencoderkit encode "Hello World"
+```
+
 ## 使用方式
 
 編碼文字：
 
 ```bash
-npx strencoderkit encode "Hello World"
+strencoderkit encode "Hello World"
 # 日水土水日火木金火日木土月日月水金日木火土水月土木土金火日火火火金
 ```
 
 解碼文字：
 
 ```bash
-npx strencoderkit decode "日水土水日火木金火日木土月日月水金日木火土水月土木土金火日火火火金"
+strencoderkit decode "日水土水日火木金火日木土月日月水金日木火土水月土木土金火日火火火金"
 # Hello World
+```
+
+如果想要自訂字元集，可以使用 `--chars`：
+
+```bash
+strencoderkit encode "Hello World" --chars "甲乙丙丁戊己庚辛壬癸"
+```
+
+如果需要定義較多的字元集，也可以使用 `--charfile` 來指定字元集文字檔：
+
+```bash
+strencoderkit encode "Hello World" --charfile "chars.txt"
 ```
 
 可以加上 `--plain` 來輸出純文字：
 
 ```bash
-npx strencoderkit encode "Hello World" --plain
+strencoderkit encode "Hello World" --plain
+```
+
+如果想要設定加解密的金鑰，可以使用 `--key`：
+
+```bash
+strencoderkit encode "Hello World" --key "secret"
+strencoderkit decode "水金火日金日月月土木日水日日日木水木木日火日木木水日火火月月日日火" --key "secret"
 ```
 
 ## 套件使用方式

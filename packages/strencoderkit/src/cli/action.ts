@@ -1,16 +1,34 @@
+import path from 'node:path'
+import fs from 'node:fs'
 import { intro, log, outro, select, text } from '@clack/prompts'
 import c from 'picocolors'
 import { Strencoder } from '../strencoder'
-import type { Options } from './options'
+import type { Options, UserOptions } from './options'
 
-export async function executeAction(userOptions: Partial<Options>) {
+export async function executeAction(userOptions: UserOptions) {
+  const cwd = process.cwd()
   const options = { ...userOptions }
 
   options.plain = options.plain
     && ['encode', 'decode'].includes(options.actionType || '')
     && !!options.message
 
+  if (options.charfile) {
+    const charfile = path.resolve(cwd, options.charfile)
+    if (!fs.existsSync(charfile)) {
+      log.error('字元集檔案不存在')
+      return
+    }
+    options.chars = fs.readFileSync(charfile, 'utf-8').trim()
+  }
+
+  if (options.chars.length < 2 ** 1 || options.chars.length > 2 ** 8) {
+    log.error('chars 字元集長度必須介於 2 到 256 之間')
+    return
+  }
+
   if (!options.plain) {
+    console.log()
     intro('StrEncoderKit')
   }
 
@@ -40,14 +58,14 @@ export async function executeAction(userOptions: Partial<Options>) {
   const resolvedOptions = options as Options
 
   const encoder = new Strencoder({
-    chars: ['日', '月', '火', '水', '木', '金', '土'],
+    chars: resolvedOptions.chars.split(''),
     encrypt: resolvedOptions.encrypt,
     compress: resolvedOptions.compress,
   })
 
   if (resolvedOptions.actionType === 'encode') {
     // encode
-    const result = await encoder.encode(resolvedOptions.message)
+    const result = await encoder.encode(resolvedOptions.message, options.key)
 
     if (resolvedOptions.plain) {
       console.log(result)
@@ -57,7 +75,7 @@ export async function executeAction(userOptions: Partial<Options>) {
   } else {
     // decode
     try {
-      const result = await encoder.decode(resolvedOptions.message)
+      const result = await encoder.decode(resolvedOptions.message, options.key)
 
       if (resolvedOptions.plain) {
         console.log(result)
