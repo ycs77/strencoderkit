@@ -1,10 +1,19 @@
 import { encodeBaseConversionByte, decodeBaseConversionByte } from './baseConversionByte'
 
-export function calculateLengthPerByte(charsLength: number) {
+/**
+ * 計算每個 byte 需要多少個字元來表示
+ * @param charsLength 字元的長度
+ */
+export function calculateLengthPerByte(charsLength: number): number {
   return Math.ceil(Math.log(2 ** 8) / Math.log(charsLength))
 }
 
-export function encodeBaseConversionBuffer(buffer: Uint8Array, chars: string[]) {
+/**
+ * 將 buffer 轉換為 base conversion 編碼的字串
+ * @param buffer 需要進行編碼的 buffer
+ * @param chars 編碼所使用的字元
+ */
+export function encodeBaseConversionBuffer(buffer: Uint8Array, chars: string[]): string {
   const lengthPerByte = calculateLengthPerByte(chars.length)
 
   // 將每個 byte 轉換為編碼後的字元索引數字
@@ -28,7 +37,12 @@ export function encodeBaseConversionBuffer(buffer: Uint8Array, chars: string[]) 
   return encoded
 }
 
-export function decodeBaseConversionBuffer(input: string, chars: string[]) {
+/**
+ * 將 base conversion 編碼的字串轉換回 buffer
+ * @param input 需要進行解碼的字串
+ * @param chars 編碼所使用的字元
+ */
+export function decodeBaseConversionBuffer(input: string, chars: string[]): Uint8Array {
   const lengthPerByte = calculateLengthPerByte(chars.length)
 
   // 將每個字元轉換為編碼字元對應的索引數字
