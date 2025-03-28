@@ -1,6 +1,6 @@
-import { encodeBaseConversionBuffer, decodeBaseConversionBuffer } from './baseConversionBuffer'
+import { decodeBaseConversionBuffer, encodeBaseConversionBuffer } from './baseConversionBuffer'
 import { compress, decompress } from './compression'
-import { encryptAES, decryptAES } from './crypto'
+import { decryptAES, encryptAES } from './crypto'
 
 export interface StrencoderOptions {
   /**

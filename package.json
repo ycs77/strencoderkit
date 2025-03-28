@@ -8,9 +8,14 @@
   "scripts": {
     "build": "run-p build:*",
     "build:core": "yarn workspace strencoderkit build",
+    "test": "run-p test:*",
+    "test:core": "yarn workspace strencoderkit test --run",
+    "lint": "eslint \"*.{js,ts,json}\" \"packages/*/*.{js,ts,json}\" \"packages/*/src/**/*.ts\"",
     "postinstall": "patch-package"
   },
   "devDependencies": {
+    "@ycs77/eslint-config": "^4.1.0",
+    "eslint": "^9.23.0",
     "npm-run-all2": "^7.0.2",
     "patch-package": "^8.0.0"
   }

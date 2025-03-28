@@ -48,7 +48,7 @@ export async function executeAction(userOptions: UserOptions) {
     const typedText = await text({
       message: `請輸入需要${options.actionType === 'encode' ? '加密' : '解密'}的文字`,
       validate(value) {
-        if (value.length === 0) return '輸入框不能為空';
+        if (value.length === 0) return '輸入框不能為空'
       },
     })
     if (typeof typedText !== 'string') return

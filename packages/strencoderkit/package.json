@@ -10,9 +10,6 @@
     "url": "git+https://github.com/ycs77/strencoderkit.git"
   },
   "sideEffects": false,
-  "bin": {
-    "strencoderkit": "bin/strencoderkit.js"
-  },
   "exports": {
     ".": {
       "types": "./dist/strencoderkit.d.ts",
@@ -21,6 +18,9 @@
   },
   "main": "./dist/strencoderkit.js",
   "types": "./dist/strencoderkit.d.ts",
+  "bin": {
+    "strencoderkit": "bin/strencoderkit.js"
+  },
   "files": [
     "dist"
   ],

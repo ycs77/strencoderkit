@@ -1,5 +1,5 @@
 // @ts-ignore
-import { unishox2_compress_simple, unishox2_decompress, USX_HCODES_DFLT, USX_HCODE_LENS_DFLT, USX_FREQ_SEQ_DFLT, USX_TEMPLATES } from 'unishox2.siara.cc'
+import { USX_FREQ_SEQ_DFLT, USX_HCODES_DFLT, USX_HCODE_LENS_DFLT, USX_TEMPLATES, unishox2_compress_simple, unishox2_decompress } from 'unishox2.siara.cc'
 import pako from 'pako'
 
 export function compress(buffer: Uint8Array): Uint8Array {
@@ -41,7 +41,7 @@ export function gzipCompress(buffer: Uint8Array): Uint8Array {
 export function gzipDecompress(buffer: Uint8Array): Uint8Array {
   const gzipHeadBytes = new Uint8Array(buffer.buffer, 0, 2)
 
-  if (gzipHeadBytes[0] === 0x1f && gzipHeadBytes[1] === 0x8b) {
+  if (gzipHeadBytes[0] === 0x1F && gzipHeadBytes[1] === 0x8B) {
     return pako.ungzip(buffer)
   }
 
@@ -50,7 +50,7 @@ export function gzipDecompress(buffer: Uint8Array): Uint8Array {
 
 export function unishoxCompress(buffer: Uint8Array): Uint8Array {
   const compressedBuffer = new Uint8Array(2048)
-  let libmark = 255
+  const libmark = 255
 
   const length = unishox2_compress_simple(
     buffer,
@@ -81,7 +81,7 @@ export function unishoxDecompress(buffer: Uint8Array): Uint8Array {
     return buffer
   }
 
-  let libmark = secondLastByte
+  const libmark = secondLastByte
   const newBuffer = buffer.subarray(0, buffer.byteLength - 2)
   const decompressedBuffer = new Uint8Array(2048)
 

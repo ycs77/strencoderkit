@@ -1,4 +1,4 @@
-import { encodeBaseConversionByte, decodeBaseConversionByte } from './baseConversionByte'
+import { decodeBaseConversionByte, encodeBaseConversionByte } from './baseConversionByte'
 
 /**
  * 計算每個 byte 需要多少個字元來表示
