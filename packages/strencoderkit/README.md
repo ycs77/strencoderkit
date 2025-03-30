@@ -1,6 +1,6 @@
 # StrEncoderKit
 
-產生類似於熊曰、魔曰之類的編碼工具，但編碼文字可以自訂，目前做出來是為了好玩，並無考慮實際用途，不要用到生產環境中。
+產生類似於熊曰、魔曰之類的文字編碼加密工具，但編碼文字可以自訂，目前做出來只是為了好玩和研究學習，加密內容不保證安全，不建議用到實際情境中。
 
 ## 全局安裝
 
@@ -106,7 +106,6 @@ encoder.decode('天干：甲丙辛乙戊癸丙丁丁甲丁戊甲己甲乙壬丙�
 
 - [与熊论道](http://hi.pcmoe.net/)
 - [TudouCode](https://github.com/lersh/TudouCode)
-- [Whisperer](https://github.com/Borber/Whisperer)
 - [Abracadabra 魔曰](https://github.com/SheepChef/Abracadabra)
 
 ## LICENSE
