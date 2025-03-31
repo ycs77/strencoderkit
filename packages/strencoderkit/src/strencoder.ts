@@ -56,7 +56,7 @@ export class Strencoder {
 
     // 加密 buffer
     if (this.#encrypt) {
-      buffer = await encryptAES(buffer, key)
+      buffer = await encryptAES(buffer, key, this.#chars.join(''))
     }
 
     // 將 buffer 編碼為對應自定義編碼字串
@@ -80,7 +80,7 @@ export class Strencoder {
 
     // 解密 buffer
     if (this.#encrypt) {
-      buffer = await decryptAES(buffer, key)
+      buffer = await decryptAES(buffer, key, this.#chars.join(''))
     }
 
     // 解壓縮 buffer
