@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { compress, decompress } from '../src/compression'
 
 const encoder = new TextEncoder()
@@ -10,8 +10,8 @@ describe('compression', () => {
     const buffer = encoder.encode(text)
 
     const compressedBuffer = compress(buffer)
-    expect(compressedBuffer[0]).toBe(0x1f)
-    expect(compressedBuffer[1]).toBe(0x8b)
+    expect(compressedBuffer[0]).toBe(0x1F)
+    expect(compressedBuffer[1]).toBe(0x8B)
     expect(compressedBuffer[compressedBuffer.length - 1]).not.toBe(255)
     expect(compressedBuffer[compressedBuffer.length - 2]).not.toBe(255)
     expect(compressedBuffer.byteLength).toBeLessThanOrEqual(buffer.byteLength)
@@ -26,8 +26,8 @@ describe('compression', () => {
     const buffer = encoder.encode(text)
 
     const compressedBuffer = compress(buffer)
-    expect(compressedBuffer[0]).not.toBe(0x1f)
-    expect(compressedBuffer[1]).not.toBe(0x8b)
+    expect(compressedBuffer[0]).not.toBe(0x1F)
+    expect(compressedBuffer[1]).not.toBe(0x8B)
     expect(compressedBuffer[compressedBuffer.length - 1]).toBe(255)
     expect(compressedBuffer[compressedBuffer.length - 2]).toBe(255)
     expect(compressedBuffer.byteLength).toBeLessThanOrEqual(buffer.byteLength)

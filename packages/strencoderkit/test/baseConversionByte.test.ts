@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest'
-import { encodeBaseConversionByte, decodeBaseConversionByte } from '../src/baseConversionByte'
+import { describe, expect, it } from 'vitest'
+import { decodeBaseConversionByte, encodeBaseConversionByte } from '../src/baseConversionByte'
 
 describe('encodeBaseConversionByte', () => {
   it('應正確編碼數字為指定進制的 Uint8Array', () => {

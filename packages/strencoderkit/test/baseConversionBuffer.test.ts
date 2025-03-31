@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest'
-import { encodeBaseConversionBuffer, decodeBaseConversionBuffer } from '../src/baseConversionBuffer'
+import { describe, expect, it } from 'vitest'
+import { decodeBaseConversionBuffer, encodeBaseConversionBuffer } from '../src/baseConversionBuffer'
 
 const encoder = new TextEncoder()
 const decoder = new TextDecoder()

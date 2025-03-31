@@ -10,7 +10,7 @@
     "build:core": "yarn workspace strencoderkit build",
     "test": "run-p test:*",
     "test:core": "yarn workspace strencoderkit test --run",
-    "lint": "eslint \"*.{js,ts,json}\" \"packages/*/*.{js,ts,json}\" \"packages/*/src/**/*.ts\"",
+    "lint": "eslint \"**/*.{js,ts,json}\"",
     "postinstall": "patch-package"
   },
   "devDependencies": {
