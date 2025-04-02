@@ -8,7 +8,7 @@ export default defineConfig({
   },
   dts: true,
   minify: true,
-  format: ['esm'],
+  format: ['cjs', 'esm'],
   external: ['unishox2.siara.cc'],
   banner: () => ({
     js: `/*!\n * strencoderkit\n * (c) 2025-present Lucas Yang\n * @license GPL-3.0\n */`,

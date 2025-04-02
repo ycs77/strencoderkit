@@ -8,6 +8,7 @@
   "scripts": {
     "build": "run-p build:*",
     "build:core": "yarn workspace strencoderkit build",
+    "build:n8n": "yarn workspace n8n-nodes-strencoderkit build",
     "test": "run-p test:*",
     "test:core": "yarn workspace strencoderkit test --run",
     "lint": "eslint \"**/*.{js,ts,json}\"",

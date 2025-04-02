@@ -7,13 +7,20 @@
   "homepage": "https://github.com/ycs77/strencoderkit",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ycs77/strencoderkit.git"
+    "url": "git+https://github.com/ycs77/strencoderkit.git",
+    "directory": "packages/strencoderkit"
   },
   "sideEffects": false,
   "exports": {
     ".": {
-      "types": "./dist/strencoderkit.d.ts",
-      "import": "./dist/strencoderkit.js"
+      "import": {
+        "types": "./dist/strencoderkit.d.ts",
+        "default": "./dist/strencoderkit.js"
+      },
+      "require": {
+        "types": "./dist/strencoderkit.d.cts",
+        "default": "./dist/strencoderkit.cjs"
+      }
     }
   },
   "main": "./dist/strencoderkit.js",
