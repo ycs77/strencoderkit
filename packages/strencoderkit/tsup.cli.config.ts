@@ -11,7 +11,7 @@ export default defineConfig({
   async onSuccess() {
     // Replace the import unishox2 path
     let code = fs.readFileSync(path.resolve(__dirname, 'dist/cli.js'), 'utf-8')
-    code = code.replace('"unishox2.siara.cc"', '"./unishox2.js"')
+    code = code.replace('"unishox2.siara.cc"', '"./unishox2.cjs"')
     fs.writeFileSync(path.resolve(__dirname, 'dist/cli.js'), code)
   },
 })
