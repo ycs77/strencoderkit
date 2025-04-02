@@ -4,7 +4,7 @@
 [![Software License][ico-license]](LICENSE)
 [![Total Downloads][ico-downloads]][link-downloads]
 
-產生類似於熊曰、魔曰之類的文字編碼加密工具，但編碼文字可以自訂，目前做出來只是為了好玩和研究學習，加密內容不保證安全，不建議用到實際情境中。
+可自訂編碼文字的編碼工具，目前做出來只是為了好玩和研究學習，加密內容不保證安全，不建議用到實際情境中。
 
 ## 全局安裝
 
