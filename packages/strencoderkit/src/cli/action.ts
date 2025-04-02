@@ -70,7 +70,7 @@ export async function executeAction(userOptions: UserOptions) {
     if (resolvedOptions.plain) {
       console.log(result)
     } else {
-      outro(`加密文字: ${result}`)
+      outro(`編碼結果: ${result}`)
     }
   } else {
     // decode
@@ -80,7 +80,7 @@ export async function executeAction(userOptions: UserOptions) {
       if (resolvedOptions.plain) {
         console.log(result)
       } else {
-        outro(`解密文字: ${result}`)
+        outro(`解碼結果: ${result}`)
       }
     } catch (error) {
       if (error instanceof Error) {
@@ -102,9 +102,9 @@ export async function executeAction(userOptions: UserOptions) {
 
         // show decode error message
         if (resolvedOptions.plain) {
-          console.error(c.red('解密失敗! @@'))
+          console.error(c.red('解碼失敗'))
         } else {
-          log.error('解密失敗! @@')
+          log.error('解碼失敗')
         }
       }
     }
