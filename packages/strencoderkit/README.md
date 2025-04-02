@@ -1,5 +1,9 @@
 # StrEncoderKit
 
+[![NPM version][ico-version]][link-npm]
+[![Software License][ico-license]](LICENSE)
+[![Total Downloads][ico-downloads]][link-downloads]
+
 產生類似於熊曰、魔曰之類的文字編碼加密工具，但編碼文字可以自訂，目前做出來只是為了好玩和研究學習，加密內容不保證安全，不建議用到實際情境中。
 
 ## 全局安裝
@@ -111,3 +115,10 @@ encoder.decode('天干：甲丙辛乙戊癸丙丁丁甲丁戊甲己甲乙壬丙�
 ## LICENSE
 
 基於 [MIT LICENSE](LICENSE.md) 釋出
+
+[ico-version]: https://img.shields.io/npm/v/strencoderkit?style=flat-square
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen?style=flat-square
+[ico-downloads]: https://img.shields.io/npm/dt/strencoderkit?style=flat-square
+
+[link-npm]: https://www.npmjs.com/package/strencoderkit
+[link-downloads]: https://www.npmjs.com/package/strencoderkit
