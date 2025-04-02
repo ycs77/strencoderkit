@@ -1,0 +1,33 @@
+{
+  "name": "strencoderkit-mcp",
+  "type": "module",
+  "version": "0.0.0",
+  "description": "StrEncoderKit 的 MCP Server。",
+  "license": "GPL-3.0",
+  "homepage": "https://github.com/ycs77/strencoderkit",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ycs77/strencoderkit.git",
+    "directory": "packages/mcp"
+  },
+  "main": "./index.js",
+  "bin": {
+    "strencoderkit-mcp": "bin/strencoderkit-mcp.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.8.0",
+    "strencoderkit": "*",
+    "zod": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "tsup": "^8.4.0",
+    "typescript": "~5.7.3"
+  }
+}
