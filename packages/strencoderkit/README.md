@@ -6,6 +6,8 @@
 
 可自訂編碼文字的編碼工具，目前做出來只是為了好玩和研究學習，加密內容不保證安全，不建議用到實際情境中。
 
+其中壓縮部分的程式碼參考自 [Abracadabra 魔曰](https://github.com/SheepChef/Abracadabra)。且加密內容強度並沒有到魔曰的程度，如果有這方面需求的話，建議使用魔曰。
+
 ## 全局安裝
 
 全局安裝套件：
@@ -114,10 +116,10 @@ encoder.decode('天干：甲丙辛乙戊癸丙丁丁甲丁戊甲己甲乙壬丙�
 
 ## LICENSE
 
-基於 [MIT LICENSE](LICENSE.md) 釋出
+基於 [GPL-3.0](LICENSE) 釋出
 
 [ico-version]: https://img.shields.io/npm/v/strencoderkit?style=flat-square
-[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen?style=flat-square
+[ico-license]: https://img.shields.io/badge/license-GPL--3.0-brightgreen?style=flat-square
 [ico-downloads]: https://img.shields.io/npm/dt/strencoderkit?style=flat-square
 
 [link-npm]: https://www.npmjs.com/package/strencoderkit
