@@ -1,7 +1,7 @@
 {
   "name": "strencoderkit-mcp",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "StrEncoderKit 的 MCP Server。",
   "license": "GPL-3.0",
   "homepage": "https://github.com/ycs77/strencoderkit",

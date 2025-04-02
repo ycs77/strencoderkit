@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-strencoderkit",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "StrEncoderKit 的 n8n 自訂 Node。",
   "license": "GPL-3.0",
   "homepage": "https://github.com/ycs77/strencoderkit",
