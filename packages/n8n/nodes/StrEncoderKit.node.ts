@@ -7,15 +7,15 @@ import type {
 import { NodeConnectionType, NodeOperationError } from 'n8n-workflow'
 import { Strencoder } from 'strencoderkit'
 
-export class StrEncoderKitNode implements INodeType {
+export class StrEncoderKit implements INodeType {
   description: INodeTypeDescription = {
-    displayName: 'StrEncoderKit Node',
-    name: 'strencoderkitNode',
+    displayName: 'StrEncoderKit',
+    name: 'strencoderkit',
     group: ['transform'],
     version: 1,
-    description: 'StrEncoderKit 的 n8n 自訂 Node',
+    description: '使用 StrEncoderKit 來編碼和解碼字串',
     defaults: {
-      name: 'Example Node',
+      name: 'String Encoder Node',
     },
     inputs: [NodeConnectionType.Main],
     outputs: [NodeConnectionType.Main],
