@@ -23,9 +23,6 @@
   "scripts": {
     "build": "tsc"
   },
-  "peerDependencies": {
-    "n8n-workflow": "*"
-  },
   "dependencies": {
     "strencoderkit": "*"
   },
@@ -37,7 +34,7 @@
     "n8nNodesApiVersion": 1,
     "credentials": [],
     "nodes": [
-      "dist/nodes/StrEncoderKit.node.js"
+      "./dist/nodes/StrEncoderKit.node.js"
     ]
   }
 }
