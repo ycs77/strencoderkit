@@ -3,6 +3,10 @@
   "type": "module",
   "version": "0.1.1",
   "description": "StrEncoderKit 的 MCP Server。",
+  "author": {
+    "name": "Lucas Yang",
+    "email": "yangchenshin77@gmail.com"
+  },
   "license": "GPL-3.0",
   "homepage": "https://github.com/ycs77/strencoderkit",
   "repository": {

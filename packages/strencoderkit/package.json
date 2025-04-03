@@ -3,6 +3,10 @@
   "type": "module",
   "version": "0.1.1",
   "description": "可自訂編碼文字的編碼工具，目前做出來只是為了好玩和研究學習，加密內容不保證安全，不建議用到實際情境中。",
+  "author": {
+    "name": "Lucas Yang",
+    "email": "yangchenshin77@gmail.com"
+  },
   "license": "GPL-3.0",
   "homepage": "https://github.com/ycs77/strencoderkit",
   "repository": {
