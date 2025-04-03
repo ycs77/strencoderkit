@@ -13,19 +13,17 @@ const server = new McpServer({
 })
 
 for (const actionType of ['encode', 'decode'] as const) {
-  const action = actionType === 'encode' ? '編碼' : '解碼'
-
   server.tool(
-    actionType,
-    `${action}字串`,
+    `${actionType}_string`,
+    `${actionType[0].toUpperCase()}${actionType.slice(1)}s a string`,
     {
-      input: z.string().describe(`要${action}的字串`),
-      chars: z.string().min(2).max(256).describe(`用於定義${action}時可用的字元集合`),
-      prefix: z.string().describe('增加在編碼字串前的前綴'),
-      suffix: z.string().describe('增加在編碼字串後的後綴'),
-      encrypt: z.boolean().default(true).describe('是否啟用加密功能'),
-      key: z.string().default('strencoderkit').describe('加密金鑰，預設為 "strencoderkit"'),
-      compress: z.boolean().default(true).describe('是否啟用壓縮功能'),
+      input: z.string().describe(`The string to ${actionType}`),
+      chars: z.string().min(2).max(256).describe(`Character set available for ${actionType}`),
+      prefix: z.string().describe('Prefix for the encoded string'),
+      suffix: z.string().describe('Suffix for the encoded string'),
+      encrypt: z.boolean().default(true).describe('Whether to enable encryption'),
+      key: z.string().default('strencoderkit').describe('Encryption key, default is "strencoderkit"'),
+      compress: z.boolean().default(true).describe('Whether to enable compression'),
     },
     async ({ input, chars, prefix, suffix, encrypt, key, compress }) => {
       const strencoder = new Strencoder({
@@ -45,7 +43,7 @@ for (const actionType of ['encode', 'decode'] as const) {
           content: [
             {
               type: 'text',
-              text: `${action}結果: ${result}`,
+              text: `${actionType} result: ${result}`,
             },
           ],
         }
@@ -54,7 +52,7 @@ for (const actionType of ['encode', 'decode'] as const) {
           content: [
             {
               type: 'text',
-              text: `${action}失敗`,
+              text: `${actionType} failed`,
             },
           ],
         }

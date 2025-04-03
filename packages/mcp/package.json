@@ -2,7 +2,7 @@
   "name": "strencoderkit-mcp",
   "type": "module",
   "version": "0.2.0",
-  "description": "StrEncoderKit 的 MCP Server。",
+  "description": "A Model Context Protocol server for StrEncoderKit.",
   "author": {
     "name": "Lucas Yang",
     "email": "yangchenshin77@gmail.com"
