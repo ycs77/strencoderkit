@@ -38,7 +38,7 @@ export function gzipCompress(buffer: Uint8Array): Uint8Array {
 }
 
 export function gzipDecompress(buffer: Uint8Array): Uint8Array {
-  const gzipHeadBytes = new Uint8Array(buffer.buffer, 0, 2)
+  const gzipHeadBytes = buffer.subarray(0, 2)
 
   if (gzipHeadBytes[0] === 0x1F && gzipHeadBytes[1] === 0x8B) {
     return pako.ungzip(buffer)
