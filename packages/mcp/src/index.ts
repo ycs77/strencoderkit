@@ -5,7 +5,7 @@ import { Strencoder } from 'strencoderkit'
 
 const server = new McpServer({
   name: 'strencoderkit',
-  version: '0.3.1',
+  version: '0.3.2',
   capabilities: {
     resources: {},
     tools: {},
