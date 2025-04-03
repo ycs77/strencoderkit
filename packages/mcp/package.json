@@ -1,7 +1,7 @@
 {
   "name": "strencoderkit-mcp",
   "type": "module",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "StrEncoderKit 的 MCP Server。",
   "author": {
     "name": "Lucas Yang",

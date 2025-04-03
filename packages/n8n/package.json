@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-strencoderkit",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "StrEncoderKit 的 n8n 自訂 Node。",
   "author": {
     "name": "Lucas Yang",
