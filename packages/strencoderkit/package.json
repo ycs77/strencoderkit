@@ -1,7 +1,7 @@
 {
   "name": "strencoderkit",
   "type": "module",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "可自訂編碼文字的編碼工具，目前做出來只是為了好玩和研究學習，加密內容不保證安全，不建議用到實際情境中。",
   "author": {
     "name": "Lucas Yang",
