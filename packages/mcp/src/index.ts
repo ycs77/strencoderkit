@@ -21,15 +21,17 @@ for (const actionType of ['encode', 'decode'] as const) {
     {
       input: z.string().describe(`要${action}的字串`),
       chars: z.string().min(2).max(256).describe(`用於定義${action}時可用的字元集合`),
-      prefix: z.string().describe('字串前綴會加在編碼結果的開頭'),
+      prefix: z.string().describe('增加在編碼字串前的前綴'),
+      suffix: z.string().describe('增加在編碼字串後的後綴'),
       encrypt: z.boolean().default(true).describe('是否啟用加密功能'),
       key: z.string().default('strencoderkit').describe('加密金鑰，預設為 "strencoderkit"'),
       compress: z.boolean().default(true).describe('是否啟用壓縮功能'),
     },
-    async ({ input, chars, prefix, encrypt, key, compress }) => {
+    async ({ input, chars, prefix, suffix, encrypt, key, compress }) => {
       const strencoder = new Strencoder({
         chars: chars.split(','),
         prefix,
+        suffix,
         encrypt,
         compress,
       })

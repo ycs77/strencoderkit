@@ -36,8 +36,8 @@ export async function executeAction(userOptions: UserOptions) {
     const selected = await select({
       message: '執行操作',
       options: [
-        { value: 'encode', label: '加密' },
-        { value: 'decode', label: '解密' },
+        { value: 'encode', label: '編碼' },
+        { value: 'decode', label: '解碼' },
       ],
     }) as 'encode' | 'decode'
     if (typeof selected !== 'string') return
@@ -46,7 +46,7 @@ export async function executeAction(userOptions: UserOptions) {
 
   if (!options.message) {
     const typedText = await text({
-      message: `請輸入需要${options.actionType === 'encode' ? '加密' : '解密'}的文字`,
+      message: `請輸入需要${options.actionType === 'encode' ? '編碼' : '解碼'}的文字`,
       validate(value) {
         if (value.length === 0) return '輸入框不能為空'
       },
@@ -59,6 +59,8 @@ export async function executeAction(userOptions: UserOptions) {
 
   const encoder = new Strencoder({
     chars: resolvedOptions.chars.split(''),
+    prefix: resolvedOptions.prefix,
+    suffix: resolvedOptions.suffix,
     encrypt: resolvedOptions.encrypt,
     compress: resolvedOptions.compress,
   })

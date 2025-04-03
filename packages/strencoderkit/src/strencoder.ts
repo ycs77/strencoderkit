@@ -8,9 +8,13 @@ export interface StrencoderOptions {
    */
   chars: string[]
   /**
-   * 字串前綴，會加在編碼結果的開頭。
+   * 增加在編碼字串前的前綴。
    */
   prefix?: string
+  /**
+   * 增加在編碼字串後的後綴。
+   */
+  suffix?: string
   /**
    * 是否啟用加密功能。
    * @default true
@@ -28,6 +32,7 @@ const DEFAULT_KEY = 'strencoderkit'
 export class Strencoder {
   #chars: string[]
   #prefix: string
+  #suffix: string
   #encrypt: boolean
   #compress: boolean
 
@@ -38,6 +43,7 @@ export class Strencoder {
 
     this.#chars = options.chars
     this.#prefix = options.prefix || ''
+    this.#suffix = options.suffix || ''
     this.#encrypt = options.encrypt ?? true
     this.#compress = options.compress ?? true
   }
@@ -62,8 +68,8 @@ export class Strencoder {
     // 將 buffer 編碼為對應自定義編碼字串
     let encoded = encodeBaseConversionBuffer(buffer, this.#chars)
 
-    // 加上前綴
-    encoded = this.#prefix + encoded
+    // 加上前綴和後綴
+    encoded = this.#prefix + encoded + this.#suffix
 
     return encoded
   }
@@ -72,8 +78,11 @@ export class Strencoder {
    * 解碼給定的字串，將其轉換回原始的字串內容。
    */
   async decode(input: string, key = DEFAULT_KEY): Promise<string> {
-    // 移除前綴
-    const baseInput = input.slice(this.#prefix.length)
+    // 移除前綴和後綴
+    let baseInput = input.slice(this.#prefix.length)
+    if (this.#suffix.length) {
+      baseInput = baseInput.slice(0, -this.#suffix.length)
+    }
 
     // 解碼轉換回原本的 buffer
     let buffer = decodeBaseConversionBuffer(baseInput, this.#chars)

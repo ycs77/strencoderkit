@@ -30,4 +30,17 @@ describe('Strencoder', () => {
     const decoded = await strencoder.decodeSilent(str)
     expect(decoded).toBe('')
   })
+
+  it('編碼&解碼包含前後墜', async () => {
+    const str = 'Hello World'
+    const strencoder = new Strencoder({
+      chars: ['日', '月', '火', '水', '木', '金', '土'],
+      prefix: '前綴',
+      suffix: '後綴',
+    })
+    const encoded = await strencoder.encode(str)
+    expect(encoded).matches(/^前綴.*後綴$/)
+    const decoded = await strencoder.decode(encoded)
+    expect(decoded).toBe('Hello World')
+  })
 })

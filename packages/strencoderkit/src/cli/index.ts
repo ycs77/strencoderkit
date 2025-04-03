@@ -7,6 +7,8 @@ const cli = cac('strencoderkit')
 
 cli.option('--chars <chars>', '自定義字元集', { default: '日月火水木金土' })
 cli.option('--charfile <file>', '字元集檔案')
+cli.option('--prefix <prefix>', '編碼前綴')
+cli.option('--suffix <suffix>', '編碼後綴')
 cli.option('--encrypt', '加密', { default: true })
 cli.option('--key <key>', '密碼')
 cli.option('--compress', '壓縮', { default: true })

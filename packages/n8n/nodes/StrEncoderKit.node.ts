@@ -56,7 +56,14 @@ export class StrEncoderKitNode implements INodeType {
         name: 'prefix',
         type: 'string',
         default: '',
-        description: '會加在編碼結果的開頭',
+        description: '增加在編碼字串前的前綴',
+      },
+      {
+        displayName: '字串後綴',
+        name: 'suffix',
+        type: 'string',
+        default: '',
+        description: '增加在編碼字串後的後綴',
       },
       {
         displayName: '加密',
@@ -87,6 +94,7 @@ export class StrEncoderKitNode implements INodeType {
     const actionType = this.getNodeParameter('actionType', 0) as 'encode' | 'decode'
     const chars = this.getNodeParameter('chars', 0) as string
     const prefix = this.getNodeParameter('prefix', 0) as string
+    const suffix = this.getNodeParameter('suffix', 0) as string
     const encrypt = this.getNodeParameter('encrypt', 0) as boolean
     const key = this.getNodeParameter('key', 0) as string
     const compress = this.getNodeParameter('compress', 0) as boolean
@@ -96,6 +104,7 @@ export class StrEncoderKitNode implements INodeType {
       const strencoder = new Strencoder({
         chars: chars.split(','),
         prefix,
+        suffix,
         encrypt,
         compress,
       })

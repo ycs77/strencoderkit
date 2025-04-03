@@ -3,6 +3,8 @@ export interface Options {
   actionType: 'encode' | 'decode'
   chars: string
   charfile: string | undefined
+  prefix: string | undefined
+  suffix: string | undefined
   encrypt: boolean
   key: string | undefined
   compress: boolean
@@ -21,6 +23,8 @@ export function resolveOptions(options: any) {
     actionType: options.actionType,
     chars: options.chars,
     charfile: options.charfile,
+    prefix: options.prefix,
+    suffix: options.suffix,
     encrypt: options.encrypt,
     key: options.key,
     compress: options.compress,
