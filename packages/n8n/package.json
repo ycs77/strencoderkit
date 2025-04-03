@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-strencoderkit",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "StrEncoderKit 的 n8n 自訂 Node。",
   "author": {
     "name": "Lucas Yang",
@@ -24,7 +24,7 @@
     "build": "tsc"
   },
   "dependencies": {
-    "strencoderkit": "0.3.2"
+    "strencoderkit": "0.3.3"
   },
   "devDependencies": {
     "n8n-workflow": "^1.82.0",
