@@ -105,6 +105,7 @@ export class StrEncoderKit implements INodeType {
 
   async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
     const items = this.getInputData()
+    const results: INodeExecutionData[] = []
 
     for (let i = 0; i < items.length; i++) {
       const input = this.getNodeParameter('input', i, '') as string
@@ -132,7 +133,7 @@ export class StrEncoderKit implements INodeType {
             ? await strencoder.decode(input, key || undefined)
             : await strencoder.decodeSilent(input, key || undefined)
 
-        items.push({ json: { result } })
+        results.push({ json: { result } })
       } catch (error) {
         // Adding `itemIndex` allows other workflows to handle this error
         if (error.context) {
@@ -148,6 +149,6 @@ export class StrEncoderKit implements INodeType {
       }
     }
 
-    return [items]
+    return [results]
   }
 }
