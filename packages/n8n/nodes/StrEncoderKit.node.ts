@@ -86,50 +86,66 @@ export class StrEncoderKit implements INodeType {
         default: true,
         description: '是否啟用壓縮功能',
       },
+      {
+        displayName: '拋出錯誤',
+        name: 'throwError',
+        type: 'boolean',
+        default: false,
+        description: '是否拋出錯誤',
+        displayOptions: {
+          show: {
+            actionType: [
+              'decode',
+            ],
+          },
+        },
+      },
     ],
   }
 
   async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
-    const input = this.getNodeParameter('input', 0) as string
-    const actionType = this.getNodeParameter('actionType', 0) as 'encode' | 'decode'
-    const chars = this.getNodeParameter('chars', 0) as string
-    const prefix = this.getNodeParameter('prefix', 0) as string
-    const suffix = this.getNodeParameter('suffix', 0) as string
-    const encrypt = this.getNodeParameter('encrypt', 0) as boolean
-    const key = this.getNodeParameter('key', 0) as string
-    const compress = this.getNodeParameter('compress', 0) as boolean
-    const items: INodeExecutionData[] = []
+    const items = this.getInputData()
 
-    try {
-      const strencoder = new Strencoder({
-        chars: chars.split(','),
-        prefix,
-        suffix,
-        encrypt,
-        compress,
-      })
+    for (let i = 0; i < items.length; i++) {
+      const input = this.getNodeParameter('input', i, '') as string
+      const actionType = this.getNodeParameter('actionType', i, 'encode') as 'encode' | 'decode'
+      const chars = this.getNodeParameter('chars', i, '日月火水木金土') as string
+      const prefix = this.getNodeParameter('prefix', i, '') as string
+      const suffix = this.getNodeParameter('suffix', i, '') as string
+      const encrypt = this.getNodeParameter('encrypt', i, true) as boolean
+      const key = this.getNodeParameter('key', i, '') as string
+      const compress = this.getNodeParameter('compress', i, true) as boolean
+      const throwError = this.getNodeParameter('throwError', i, false) as boolean
 
-      if (actionType === 'encode') {
-        const result = await strencoder.encode(input, key || undefined)
+      try {
+        const strencoder = new Strencoder({
+          chars: chars.split(''),
+          prefix,
+          suffix,
+          encrypt,
+          compress,
+        })
+
+        const result = actionType === 'encode'
+          ? await strencoder.encode(input, key || undefined)
+          : throwError
+            ? await strencoder.decode(input, key || undefined)
+            : await strencoder.decodeSilent(input, key || undefined)
+
         items.push({ json: { result } })
-      } else if (actionType === 'decode') {
-        const result = await strencoder.decode(input, key || undefined)
-        items.push({ json: { result } })
-      }
-    } catch (error) {
-      const itemIndex = 0
+      } catch (error) {
+        // Adding `itemIndex` allows other workflows to handle this error
+        if (error.context) {
+          // If the error thrown already contains the context property,
+          // only append the itemIndex
+          error.context.itemIndex = i
+          throw error
+        }
 
-      // Adding `itemIndex` allows other workflows to handle this error
-      if (error.context) {
-        // If the error thrown already contains the context property,
-        // only append the itemIndex
-        error.context.itemIndex = itemIndex
-        throw error
+        throw new NodeOperationError(this.getNode(), error, {
+          itemIndex: i,
+        })
       }
-
-      throw new NodeOperationError(this.getNode(), error, {
-        itemIndex,
-      })
     }
 
     return [items]

@@ -106,9 +106,9 @@ export class Strencoder {
   /**
    * 嘗試解碼輸入字串，若發生錯誤則回傳空字串。
    */
-  async decodeSilent(input: string): Promise<string> {
+  async decodeSilent(input: string, key = DEFAULT_KEY): Promise<string> {
     try {
-      return await this.decode(input)
+      return await this.decode(input, key)
     } catch (error) {
       return ''
     }

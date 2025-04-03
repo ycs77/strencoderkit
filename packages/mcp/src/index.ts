@@ -22,12 +22,12 @@ for (const actionType of ['encode', 'decode'] as const) {
       prefix: z.string().describe('Prefix for the encoded string'),
       suffix: z.string().describe('Suffix for the encoded string'),
       encrypt: z.boolean().default(true).describe('Whether to enable encryption'),
-      key: z.string().default('strencoderkit').describe('Encryption key, default is "strencoderkit"'),
+      key: z.string().default('').describe('Encryption key, default is "strencoderkit"'),
       compress: z.boolean().default(true).describe('Whether to enable compression'),
     },
     async ({ input, chars, prefix, suffix, encrypt, key, compress }) => {
       const strencoder = new Strencoder({
-        chars: chars.split(','),
+        chars: chars.split(''),
         prefix,
         suffix,
         encrypt,
