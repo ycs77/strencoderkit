@@ -33,9 +33,9 @@ A Model Context Protocol server for StrEncoderKit.
     - `chars` (string): Character set available for decode
     - `prefix` (string): Prefix for the encoded string
     - `suffix` (string): Suffix for the encoded string
-    - `decrypt` (boolean): Whether to enable decryption
-    - `key` (string): Decryption key, default is "strencoderkit"
-    - `decompress` (boolean): Whether to enable decompression
+    - `encrypt` (boolean): Whether to enable encryption
+    - `key` (string): Encryption key, default is "strencoderkit"
+    - `compress` (boolean): Whether to enable compression
 
 ## Usage with Claude Desktop
 
