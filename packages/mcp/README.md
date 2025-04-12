@@ -20,22 +20,14 @@ A Model Context Protocol server for StrEncoderKit.
   - Inputs:
     - `input` (string): The string to encode
     - `chars` (string): Character set available for encode
-    - `prefix` (string): Prefix for the encoded string
-    - `suffix` (string): Suffix for the encoded string
-    - `encrypt` (boolean): Whether to enable encryption
-    - `key` (string): Encryption key, default is "strencoderkit"
-    - `compress` (boolean): Whether to enable compression
+    - `key` (string, optional, default: 'strencoderkit'): Encryption key
 
 - **decode_string**
   - Decodes a string
   - Inputs:
     - `input` (string): The string to decode
     - `chars` (string): Character set available for decode
-    - `prefix` (string): Prefix for the encoded string
-    - `suffix` (string): Suffix for the encoded string
-    - `encrypt` (boolean): Whether to enable encryption
-    - `key` (string): Encryption key, default is "strencoderkit"
-    - `compress` (boolean): Whether to enable compression
+    - `key` (string, optional, default: 'strencoderkit'): Encryption key
 
 ## Usage with Claude Desktop
 

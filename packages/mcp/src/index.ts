@@ -19,25 +19,17 @@ for (const actionType of ['encode', 'decode'] as const) {
     {
       input: z.string().describe(`The string to ${actionType}`),
       chars: z.string().min(2).max(256).describe(`Character set available for ${actionType}`),
-      prefix: z.string().describe('Prefix for the encoded string'),
-      suffix: z.string().describe('Suffix for the encoded string'),
-      encrypt: z.boolean().default(true).describe('Whether to enable encryption'),
-      key: z.string().default('').describe('Encryption key, default is "strencoderkit"'),
-      compress: z.boolean().default(true).describe('Whether to enable compression'),
+      key: z.string().optional().describe('Encryption key'),
     },
-    async ({ input, chars, prefix, suffix, encrypt, key, compress }) => {
+    async ({ input, chars, key }) => {
       const strencoder = new Strencoder({
         chars: chars.split(''),
-        prefix,
-        suffix,
-        encrypt,
-        compress,
       })
 
       try {
         const result = actionType === 'encode'
-          ? await strencoder.encode(input, key || undefined)
-          : await strencoder.decode(input, key || undefined)
+          ? await strencoder.encode(input, key)
+          : await strencoder.decode(input, key)
 
         return {
           content: [
