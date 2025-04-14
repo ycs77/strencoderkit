@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "@ycs77/eslint-config": "^4.1.0",
-    "eslint": "^9.23.0",
+    "eslint": "^9.24.0",
     "npm-run-all2": "^7.0.2",
     "patch-package": "^8.0.0"
   }
