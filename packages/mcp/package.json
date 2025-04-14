@@ -1,7 +1,7 @@
 {
   "name": "strencoderkit-mcp",
   "type": "module",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "description": "A Model Context Protocol server for StrEncoderKit.",
   "author": {
     "name": "Lucas Yang",
@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.8.0",
-    "strencoderkit": "0.3.3",
+    "strencoderkit": "0.4.0",
     "zod": "^3.0.0"
   },
   "devDependencies": {
