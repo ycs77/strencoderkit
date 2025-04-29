@@ -1,19 +1,28 @@
 import path from 'node:path'
 import fs from 'node:fs'
-import { defineConfig } from 'tsup'
+import { defineConfig } from 'tsdown'
+import { version } from './package.json'
+
+const banner = `/*!\n * StrEncoderKit v${version}\n * (c) 2025-present Lucas Yang\n * @license GPL-3.0\n */`
 
 export default defineConfig({
   entry: {
     strencoderkit: 'src/index.ts',
   },
-  dts: true,
   minify: true,
+  clean: false,
   format: ['cjs', 'esm'],
   external: ['unishox2.siara.cc'],
-  banner: () => ({
-    js: `/*!\n * strencoderkit\n * (c) 2025-present Lucas Yang\n * @license GPL-3.0\n */`,
-  }),
   async onSuccess() {
+    // Add banner comment to the top of the file
+    const files = ['strencoderkit.cjs', 'strencoderkit.js']
+    for (const file of files) {
+      const filePath = path.resolve(__dirname, 'dist', file)
+      let code = fs.readFileSync(filePath, 'utf-8')
+      code = banner + '\n' + code
+      fs.writeFileSync(filePath, code)
+    }
+
     // Copy unishox2.js to dist folder
     fs.copyFileSync(
       path.resolve(__dirname, '../../node_modules/unishox2.siara.cc/unishox2.js'),

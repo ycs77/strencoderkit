@@ -1,12 +1,13 @@
 import path from 'node:path'
 import fs from 'node:fs'
-import { defineConfig } from 'tsup'
+import { defineConfig } from 'tsdown'
 
 export default defineConfig({
   entry: {
     cli: 'src/cli/index.ts',
   },
-  format: ['esm'],
+  dts: false,
+  clean: false,
   external: ['unishox2.siara.cc'],
   async onSuccess() {
     // Replace the import unishox2 path
