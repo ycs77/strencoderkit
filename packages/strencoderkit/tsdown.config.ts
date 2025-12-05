@@ -1,5 +1,5 @@
-import path from 'node:path'
 import fs from 'node:fs'
+import path from 'node:path'
 import { defineConfig } from 'tsdown'
 import { version } from './package.json'
 
@@ -9,9 +9,10 @@ export default defineConfig({
   entry: {
     strencoderkit: 'src/index.ts',
   },
+  platform: 'neutral',
+  format: ['cjs', 'esm'],
   minify: true,
   clean: false,
-  format: ['cjs', 'esm'],
   external: ['unishox2.siara.cc'],
   async onSuccess() {
     // Add banner comment to the top of the file
@@ -19,7 +20,7 @@ export default defineConfig({
     for (const file of files) {
       const filePath = path.resolve(__dirname, 'dist', file)
       let code = fs.readFileSync(filePath, 'utf-8')
-      code = banner + '\n' + code
+      code = `${banner}\n${code}`
       fs.writeFileSync(filePath, code)
     }
 

@@ -1,7 +1,7 @@
 import cac from 'cac'
-import { resolveOptions } from './options'
-import { executeAction } from './action'
 import { version } from '../../package.json'
+import { executeAction } from './action'
+import { resolveOptions } from './options'
 
 const cli = cac('strencoderkit')
 

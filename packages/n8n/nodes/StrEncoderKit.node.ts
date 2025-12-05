@@ -4,7 +4,7 @@ import type {
   INodeType,
   INodeTypeDescription,
 } from 'n8n-workflow'
-import { NodeConnectionType, NodeOperationError } from 'n8n-workflow'
+import { NodeOperationError } from 'n8n-workflow'
 import { Strencoder } from 'strencoderkit'
 
 export class StrEncoderKit implements INodeType {
@@ -17,8 +17,8 @@ export class StrEncoderKit implements INodeType {
     defaults: {
       name: 'String Encoder Node',
     },
-    inputs: [NodeConnectionType.Main],
-    outputs: [NodeConnectionType.Main],
+    inputs: ['main'],
+    outputs: ['main'],
     properties: [
       {
         displayName: '輸入字串',

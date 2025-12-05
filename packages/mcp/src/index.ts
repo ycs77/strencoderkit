@@ -1,57 +1,69 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
-import { z } from 'zod'
 import { Strencoder } from 'strencoderkit'
+import * as z from 'zod'
 
 const server = new McpServer({
   name: 'strencoderkit',
   version: '0.4.0',
-  capabilities: {
-    resources: {},
-    tools: {},
-  },
 })
 
-for (const actionType of ['encode', 'decode'] as const) {
-  server.tool(
-    `${actionType}_string`,
-    `${actionType[0].toUpperCase()}${actionType.slice(1)}s a string`,
-    {
-      input: z.string().describe(`The string to ${actionType}`),
-      chars: z.string().min(2).max(256).describe(`Character set available for ${actionType}`),
+server.registerTool(
+  'encode_string',
+  {
+    title: 'String Encoder',
+    description: 'Encodes a string using a specified character set and optional encryption key.',
+    inputSchema: {
+      input: z.string().describe('The string to encode'),
+      chars: z.string().min(2).max(256).describe('Character set available for encode'),
       key: z.string().optional().describe('Encryption key'),
     },
-    async ({ input, chars, key }) => {
-      const strencoder = new Strencoder({
-        chars: chars.split(''),
-      })
+  },
+  async ({ input, chars, key }) => {
+    const strencoder = new Strencoder({
+      chars: chars.split(''),
+    })
 
-      try {
-        const result = actionType === 'encode'
-          ? await strencoder.encode(input, key)
-          : await strencoder.decode(input, key)
-
-        return {
-          content: [
-            {
-              type: 'text',
-              text: `${actionType} result: ${result}`,
-            },
-          ],
-        }
-      } catch (error) {
-        return {
-          content: [
-            {
-              type: 'text',
-              text: `${actionType} failed`,
-            },
-          ],
-        }
+    try {
+      const result = await strencoder.encode(input, key)
+      return {
+        content: [{ type: 'text', text: result }],
       }
+    } catch (error) {
+      return {
+        content: [{ type: 'text', text: 'encode failed' }],
+      }
+    }
+  },
+)
+server.registerTool(
+  'decode_string',
+  {
+    title: 'String Decoder',
+    description: 'Decodes a string using a specified character set and optional encryption key.',
+    inputSchema: {
+      input: z.string().describe('The string to decode'),
+      chars: z.string().min(2).max(256).describe('Character set available for decode'),
+      key: z.string().optional().describe('Encryption key'),
     },
-  )
-}
+  },
+  async ({ input, chars, key }) => {
+    const strencoder = new Strencoder({
+      chars: chars.split(''),
+    })
+
+    try {
+      const result = await strencoder.decode(input, key)
+      return {
+        content: [{ type: 'text', text: result }],
+      }
+    } catch (error) {
+      return {
+        content: [{ type: 'text', text: 'decode failed' }],
+      }
+    }
+  },
+)
 
 async function main() {
   const transport = new StdioServerTransport()

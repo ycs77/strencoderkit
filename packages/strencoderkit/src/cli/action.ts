@@ -1,9 +1,9 @@
-import path from 'node:path'
+import type { Options, UserOptions } from './options'
 import fs from 'node:fs'
+import path from 'node:path'
 import { intro, log, outro, select, text } from '@clack/prompts'
 import c from 'picocolors'
 import { Strencoder } from '../strencoder'
-import type { Options, UserOptions } from './options'
 
 export async function executeAction(userOptions: UserOptions) {
   const cwd = process.cwd()

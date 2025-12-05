@@ -1,5 +1,5 @@
-import { USX_FREQ_SEQ_DFLT, USX_HCODES_DFLT, USX_HCODE_LENS_DFLT, USX_TEMPLATES, unishox2_compress_simple, unishox2_decompress } from 'unishox2.siara.cc'
 import pako from 'pako'
+import { unishox2_compress_simple, unishox2_decompress, USX_FREQ_SEQ_DFLT, USX_HCODE_LENS_DFLT, USX_HCODES_DFLT, USX_TEMPLATES } from 'unishox2.siara.cc'
 
 export function compress(buffer: Uint8Array): Uint8Array {
   let tempBuffer = buffer
