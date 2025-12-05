@@ -5,7 +5,7 @@ import * as z from 'zod'
 
 const server = new McpServer({
   name: 'strencoderkit',
-  version: '0.4.0',
+  version: '0.5.0',
 })
 
 server.registerTool(
