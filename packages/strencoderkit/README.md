@@ -116,10 +116,10 @@ encoder.decode('天干：甲丙辛乙戊癸丙丁丁甲丁戊甲己甲乙壬丙�
 
 ## LICENSE
 
-基於 [GPL-3.0](LICENSE) 釋出
+基於 [AGPL-3.0](LICENSE) 釋出
 
 [ico-version]: https://img.shields.io/npm/v/strencoderkit?style=flat-square
-[ico-license]: https://img.shields.io/badge/license-GPL--3.0-brightgreen?style=flat-square
+[ico-license]: https://img.shields.io/badge/license-AGPL--3.0-brightgreen?style=flat-square
 [ico-downloads]: https://img.shields.io/npm/dt/strencoderkit?style=flat-square
 
 [link-npm]: https://www.npmjs.com/package/strencoderkit

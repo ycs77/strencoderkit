@@ -3,7 +3,7 @@ import path from 'node:path'
 import { defineConfig } from 'tsdown'
 import { version } from './package.json'
 
-const banner = `/*!\n * StrEncoderKit v${version}\n * (c) 2025-present Lucas Yang\n * @license GPL-3.0\n */`
+const banner = `/*!\n * StrEncoderKit v${version}\n * (c) 2025-present Lucas Yang\n * @license AGPL-3.0\n */`
 
 export default defineConfig({
   entry: {
