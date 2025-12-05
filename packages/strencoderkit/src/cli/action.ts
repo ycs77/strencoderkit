@@ -9,9 +9,9 @@ export async function executeAction(userOptions: UserOptions) {
   const cwd = process.cwd()
   const options = { ...userOptions }
 
-  options.plain = options.plain
-    && ['encode', 'decode'].includes(options.actionType || '')
-    && !!options.message
+  options.plain = options.plain &&
+    ['encode', 'decode'].includes(options.actionType || '') &&
+    !!options.message
 
   if (options.charfile) {
     const charfile = path.resolve(cwd, options.charfile)
