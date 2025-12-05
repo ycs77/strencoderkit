@@ -53,7 +53,7 @@ export class Strencoder {
    */
   async encode(input: string, key = DEFAULT_KEY): Promise<string> {
     // 將輸入字串轉換為二進位陣列
-    let buffer = new TextEncoder().encode(input)
+    let buffer: Uint8Array = new TextEncoder().encode(input)
 
     // 壓縮 buffer
     if (this.#compress) {
