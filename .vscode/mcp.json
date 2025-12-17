@@ -1,0 +1,11 @@
+{
+  "servers": {
+    "strencoderkit": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "strencoderkit-mcp"
+      ]
+    }
+  }
+}
