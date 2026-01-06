@@ -22,7 +22,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "inspect": "npx -y @modelcontextprotocol/inspector npx strencoderkit-mcp"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.24.0",

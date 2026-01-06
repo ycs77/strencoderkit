@@ -38,10 +38,7 @@ Add the configuration into your `claude_desktop_config.json` file:
   "mcpServers": {
     "strencoderkit": {
       "command": "npx",
-      "args": [
-        "-y",
-        "strencoderkit-mcp"
-      ]
+      "args": ["-y", "strencoderkit-mcp"]
     }
   }
 }
