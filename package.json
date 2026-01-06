@@ -16,8 +16,8 @@
     "postinstall": "patch-package"
   },
   "devDependencies": {
-    "@ycs77/eslint-config": "^6.1.0",
-    "eslint": "^9.39.1",
+    "@ycs77/eslint-config": "^6.2.1",
+    "eslint": "^9.39.2",
     "npm-run-all2": "^8.0.4",
     "patch-package": "^8.0.1"
   }
