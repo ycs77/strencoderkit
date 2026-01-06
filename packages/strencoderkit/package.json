@@ -17,18 +17,14 @@
   "sideEffects": false,
   "exports": {
     ".": {
-      "import": {
-        "types": "./dist/strencoderkit.d.ts",
-        "default": "./dist/strencoderkit.js"
-      },
-      "require": {
-        "types": "./dist/strencoderkit.d.cts",
-        "default": "./dist/strencoderkit.cjs"
-      }
-    }
+      "import": "./dist/strencoderkit.js",
+      "require": "./dist/strencoderkit.cjs"
+    },
+    "./package.json": "./package.json"
   },
-  "main": "./dist/strencoderkit.js",
-  "types": "./dist/strencoderkit.d.ts",
+  "main": "./dist/strencoderkit.cjs",
+  "module": "./dist/strencoderkit.js",
+  "types": "./dist/strencoderkit.d.cts",
   "bin": {
     "strencoderkit": "bin/strencoderkit.js"
   },
