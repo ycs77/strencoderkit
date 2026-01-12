@@ -2,23 +2,22 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
+  "packageManager": "pnpm@10.28.0",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
     "build": "run-s build:core build:n8n build:mcp",
-    "build:core": "yarn workspace strencoderkit build",
-    "build:n8n": "yarn workspace n8n-nodes-strencoderkit build",
-    "build:mcp": "yarn workspace strencoderkit-mcp build",
-    "test": "run-p test:*",
-    "test:core": "yarn workspace strencoderkit test --run",
-    "lint": "eslint \"**/*.{js,ts,json}\"",
-    "postinstall": "patch-package"
+    "build:core": "pnpm -C packages/strencoderkit build",
+    "build:n8n": "pnpm -C packages/n8n build",
+    "build:mcp": "pnpm -C packages/mcp build",
+    "test": "run-p \"test:*\"",
+    "test:core": "pnpm -C packages/strencoderkit test --run",
+    "lint": "eslint ."
   },
   "devDependencies": {
-    "@ycs77/eslint-config": "^6.2.1",
-    "eslint": "^9.39.2",
-    "npm-run-all2": "^8.0.4",
-    "patch-package": "^8.0.1"
+    "@ycs77/eslint-config": "catalog:dev",
+    "eslint": "catalog:dev",
+    "npm-run-all2": "catalog:dev"
   }
 }

@@ -24,11 +24,11 @@
     "build": "tsc"
   },
   "dependencies": {
-    "strencoderkit": "0.5.0"
+    "strencoderkit": "workspace:*"
   },
   "devDependencies": {
-    "n8n-workflow": "^1.120.0",
-    "typescript": "~5.9.3"
+    "n8n-workflow": "catalog:dev",
+    "typescript": "catalog:dev"
   },
   "n8n": {
     "n8nNodesApiVersion": 1,

@@ -1,7 +1,7 @@
-diff --git a/node_modules/unishox2.siara.cc/unishox2.js b/node_modules/unishox2.siara.cc/unishox2.js
-index 3b0361b..27d7504 100644
---- a/node_modules/unishox2.siara.cc/unishox2.js
-+++ b/node_modules/unishox2.siara.cc/unishox2.js
+diff --git a/unishox2.js b/unishox2.js
+index 3b0361bd4bf08213b58e06b3170c0b05e4b90eb6..1c1fb62606c88728949706e2b164ed87c0aeaaef 100644
+--- a/unishox2.js
++++ b/unishox2.js
 @@ -473,8 +473,8 @@ function unishox2_compress(input, len, out, usx_hcodes, usx_hcode_lens, usx_freq
    prev_uni = 0;
    state = USX_ALPHA;
@@ -10,6 +10,6 @@ index 3b0361b..27d7504 100644
 -  console.log(magic.bits);
 +  //console.log(magic.byt);
 +  //console.log(magic.bits);
- 
+
    ol = append_bits(out, olen, ol, magic.byt, magic.bits);
    for (l=0; l<len; l++) {

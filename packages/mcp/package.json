@@ -26,12 +26,12 @@
     "inspect": "npx -y @modelcontextprotocol/inspector npx strencoderkit-mcp"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.24.0",
-    "strencoderkit": "0.5.0",
-    "zod": "^4.0.0"
+    "@modelcontextprotocol/sdk": "catalog:prod",
+    "strencoderkit": "workspace:*",
+    "zod": "catalog:prod"
   },
   "devDependencies": {
-    "@types/node": "^22.19.3",
-    "typescript": "~5.9.3"
+    "@types/node": "catalog:dev",
+    "typescript": "catalog:dev"
   }
 }

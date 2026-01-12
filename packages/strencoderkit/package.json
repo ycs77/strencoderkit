@@ -32,30 +32,30 @@
     "dist"
   ],
   "scripts": {
-    "build": "run-p build:*",
+    "build": "run-p \"build:*\"",
     "build:pkg": "tsdown",
     "build:cli": "tsdown --config tsdown.cli.config.ts",
-    "watch": "run-p watch:*",
+    "watch": "run-p \"watch:*\"",
     "watch:pkg": "tsdown --watch",
     "watch:cli": "tsdown --watch --config tsdown.cli.config.ts",
     "test": "vitest"
   },
   "dependencies": {
-    "@clack/prompts": "^0.11.0",
-    "cac": "^6.7.14",
-    "js-crypto-aes": "^1.0.6",
-    "js-crypto-hash": "^1.0.7",
-    "pako": "^2.1.0",
-    "picocolors": "^1.1.1"
+    "@clack/prompts": "catalog:prod",
+    "cac": "catalog:prod",
+    "js-crypto-aes": "catalog:prod",
+    "js-crypto-hash": "catalog:prod",
+    "pako": "catalog:prod",
+    "picocolors": "catalog:prod"
   },
   "devDependencies": {
-    "@types/node": "^22.19.3",
-    "@types/pako": "^2.0.4",
-    "npm-run-all2": "^8.0.4",
-    "tsdown": "^0.18.4",
-    "tsx": "^4.21.0",
-    "typescript": "~5.9.3",
-    "unishox2.siara.cc": "^1.1.5",
-    "vitest": "^4.0.16"
+    "@types/node": "catalog:dev",
+    "@types/pako": "catalog:dev",
+    "npm-run-all2": "catalog:dev",
+    "tsdown": "catalog:dev",
+    "tsx": "catalog:dev",
+    "typescript": "catalog:dev",
+    "unishox2.siara.cc": "catalog:dev",
+    "vitest": "catalog:dev"
   }
 }
