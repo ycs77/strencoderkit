@@ -21,7 +21,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "prepack": "pnpm build"
   },
   "dependencies": {
     "strencoderkit": "workspace:*"

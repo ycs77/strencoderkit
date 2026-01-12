@@ -23,7 +23,8 @@
   ],
   "scripts": {
     "build": "tsc",
-    "inspect": "npx -y @modelcontextprotocol/inspector npx strencoderkit-mcp"
+    "inspect": "npx -y @modelcontextprotocol/inspector npx strencoderkit-mcp",
+    "prepack": "pnpm build"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "catalog:prod",

@@ -38,7 +38,8 @@
     "watch": "run-p \"watch:*\"",
     "watch:pkg": "tsdown --watch",
     "watch:cli": "tsdown --watch --config tsdown.cli.config.ts",
-    "test": "vitest"
+    "test": "vitest",
+    "prepack": "pnpm build"
   },
   "dependencies": {
     "@clack/prompts": "catalog:prod",
