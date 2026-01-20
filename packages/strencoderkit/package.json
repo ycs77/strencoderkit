@@ -32,10 +32,10 @@
     "dist"
   ],
   "scripts": {
-    "build": "run-p \"build:*\"",
+    "build": "run-p build:\\*",
     "build:pkg": "tsdown",
     "build:cli": "tsdown --config tsdown.cli.config.ts",
-    "watch": "run-p \"watch:*\"",
+    "watch": "run-p watch:\\*",
     "watch:pkg": "tsdown --watch",
     "watch:cli": "tsdown --watch --config tsdown.cli.config.ts",
     "test": "vitest",

@@ -11,7 +11,7 @@
     "build:core": "pnpm -C packages/strencoderkit build",
     "build:n8n": "pnpm -C packages/n8n build",
     "build:mcp": "pnpm -C packages/mcp build",
-    "test": "run-p \"test:*\"",
+    "test": "run-p test:\\*",
     "test:core": "pnpm -C packages/strencoderkit test --run",
     "lint": "eslint .",
     "release": "rm \"packages/*/dist\" -rf && bumpp -r --commit \"Release v%s\" && pnpm build"
