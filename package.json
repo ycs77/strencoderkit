@@ -14,7 +14,7 @@
     "test": "run-p test:\\*",
     "test:core": "pnpm -C packages/strencoderkit test --run",
     "lint": "eslint .",
-    "release": "rm \"packages/*/dist\" -rf && bumpp -r --commit \"Release v%s\" && pnpm build"
+    "release": "rm \"packages/*/dist\" -rf && bumpp --commit \"Release v%s\" -r && pnpm build"
   },
   "devDependencies": {
     "@ycs77/eslint-config": "catalog:dev",
