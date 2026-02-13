@@ -13,7 +13,7 @@
     "build:mcp": "pnpm -C packages/mcp build",
     "test": "run-p test:\\*",
     "test:core": "pnpm -C packages/strencoderkit test --run",
-    "lint": "eslint .",
+    "lint": "eslint . --cache --concurrency auto",
     "release": "rm \"packages/*/dist\" -rf && bumpp --commit \"Release v%s\" -r && pnpm build"
   },
   "devDependencies": {
