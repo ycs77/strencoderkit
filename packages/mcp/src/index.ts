@@ -31,7 +31,8 @@ server.registerTool(
       }
     } catch (error) {
       return {
-        content: [{ type: 'text', text: 'encode failed' }],
+        content: [{ type: 'text', text: `String encode failed: ${error.message}` }],
+        isError: true,
       }
     }
   },
@@ -59,7 +60,8 @@ server.registerTool(
       }
     } catch (error) {
       return {
-        content: [{ type: 'text', text: 'decode failed' }],
+        content: [{ type: 'text', text: `String decode failed: ${error.message}` }],
+        isError: true,
       }
     }
   },
@@ -72,6 +74,6 @@ async function main() {
 }
 
 main().catch(error => {
-  console.error('Fatal error in main():', error)
+  console.error('Fatal error running server:', error)
   process.exit(1)
 })
