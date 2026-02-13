@@ -1,7 +1,7 @@
 ---
 name: strencoderkit-encode
 description: Encode text using custom character sets (like 日月火水木金土) with optional encryption
-allowed-tools: Bash
+allowed-tools: Bash(npx strencoderkit encode *)
 ---
 
 # Encode Text with StrEncoderKit

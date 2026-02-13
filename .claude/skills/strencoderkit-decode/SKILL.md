@@ -1,7 +1,7 @@
 ---
 name: strencoderkit-decode
 description: Decode encoded strings back to original text with optional decryption
-allowed-tools: Bash
+allowed-tools: Bash(npx strencoderkit decode *)
 ---
 
 # Decode Text with StrEncoderKit
