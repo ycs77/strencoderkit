@@ -73,9 +73,10 @@ export function unishoxDecompress(buffer: Uint8Array): Uint8Array {
   const lastByte = buffer[buffer.byteLength - 1]
   const secondLastByte = buffer[buffer.byteLength - 2]
 
-  if (lastByte !== 255 ||
-      secondLastByte < 244 ||
-      secondLastByte > 255
+  if (
+    lastByte !== 255 ||
+    secondLastByte < 244 ||
+    secondLastByte > 255
   ) {
     return buffer
   }

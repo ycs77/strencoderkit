@@ -1,6 +1,6 @@
-import { defineConfig, ProgressEvent } from 'bumpp'
 import { readFileSync, writeFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { defineConfig, ProgressEvent } from 'bumpp'
 
 export default defineConfig({
   async execute(operation) {
