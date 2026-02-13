@@ -3,9 +3,6 @@
   "version": "0.6.1",
   "private": true,
   "packageManager": "pnpm@10.28.2",
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
     "build": "run-s build:core build:n8n build:mcp",
     "build:core": "pnpm -C packages/strencoderkit build",
