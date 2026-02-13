@@ -14,7 +14,6 @@
     "url": "git+https://github.com/ycs77/strencoderkit.git",
     "directory": "packages/mcp"
   },
-  "main": "./index.js",
   "bin": {
     "strencoderkit-mcp": "bin/strencoderkit-mcp.js"
   },
